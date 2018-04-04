@@ -27,6 +27,10 @@ restService.post("/echo", function(req, res) {
   });
 });
 
+restService.get('/user',function(reg,res){
+	res.json({firstname:'John',lastname:'Doe',age:33})
+});
+
 restService.post("/audio", function(req, res) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
