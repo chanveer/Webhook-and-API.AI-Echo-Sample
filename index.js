@@ -27,20 +27,19 @@ restService.post("/echo", function(req, res) {
   });
 });
 
-restService.post('/user',function(reg,res){
-	var speech =
+restService.post("/user", function(req, res) {
+  var speech =
     req.body.result &&
     req.body.result.parameters &&
     req.body.result.parameters.echoText
       ? req.body.result.parameters.echoText
-      : "Seems like some problem. tell again.";
-	  return res.json({
-	    speech: "John",
-	    displayText: speech,
-	    source: "webhook-echo-sample"
-	  });
+      : "Seems like some problem. Speak again.";
+  return res.json({
+    speech: speech,
+    displayText: speech,
+    source: "webhook-echo-sample"
+  });
 });
-
 restService.post("/audio", function(req, res) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
