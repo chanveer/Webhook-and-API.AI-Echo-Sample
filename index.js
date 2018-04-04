@@ -28,7 +28,17 @@ restService.post("/echo", function(req, res) {
 });
 
 restService.get('/user',function(reg,res){
-	res.json({firstname:'John',lastname:'Doe',age:33})
+	var speech =
+    req.body.result &&
+    req.body.result.parameters &&
+    req.body.result.parameters.echoText
+      ? req.body.result.parameters.echoText
+      : "Seems like some problem. tell again.";
+	  return res.json({
+	    speech: "John",
+	    displayText: speech,
+	    source: "webhook-echo-sample"
+	  });
 });
 
 restService.post("/audio", function(req, res) {
