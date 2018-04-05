@@ -12,11 +12,11 @@ restService.use(
 );
 
 restService.use(bodyParser.json());
- var speech = "";
+
 
 restService.post("/check", function(req, res) {
   var jsonObj = require("./db.json");
- 
+  var speech = "";
 	
  if(req.body.result.parameters = "echoText"){
   
