@@ -16,12 +16,12 @@ restService.use(bodyParser.json());
 
 restService.post("/check", function(req, res) {
   var jsonObj = require("./db.json");
-
+  var string1 = "";
 	
 
 	
   if(req.body.result.parameters = "leave"){
-  var string1 = "";
+  
   for (var property1 in jsonObj.employess) {
 	  if(jsonObj.employess[property1].status == 0){
 	     string1 = string1 + jsonObj.employess[property1].name + " ";
@@ -33,13 +33,13 @@ restService.post("/check", function(req, res) {
     req.body.result.parameters.leave
       ? req.body.result.parameters.leave
       : "Seems like some problem. Speak again.";
-  return res.json({
+   }
+	
+ return res.json({
     speech: string1,
     displayText: speech,
     source: "webhook-echo-sample"
   });
-	  
-  }
 	
 });
 
