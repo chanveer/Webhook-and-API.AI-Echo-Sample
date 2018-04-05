@@ -37,17 +37,19 @@ var jsonObj = require("./db.json");
 
 
 restService.post("/user", function(req, res) {
-  var empcount = jsonObj.employess.length;
+  
   var speech =
     req.body.result &&
     req.body.result.parameters &&
     req.body.result.parameters.echoText
       ? req.body.result.parameters.echoText
       : "Seems like some problem. Speak again.";
+ var empcount = jsonObj.employess.length;
+   for(var id = 0;id<empcount;id++){
+	speech: jsonObj.employess[id].name+' '+jsonObj.employess[id].shift,
+    }
   return res.json({
-    //for(var id = 0;id<empcount;id++){
-        speech: jsonObj.employess[0].name+' '+jsonObj.employess[0].shift,
-    //}
+     speech: speech,
     displayText: speech,
     source: "webhook-echo-sample"
   });
