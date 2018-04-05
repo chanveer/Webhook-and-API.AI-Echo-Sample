@@ -32,7 +32,9 @@ var empcount = jsonObj.employess.length;
 
 
 
-
+for(var id = 0;id<empcount;id++){
+	dataexm  =  jsonObj.employess[id].name+' '+jsonObj.employess[id].shift,
+  }
 	
 
 
@@ -45,11 +47,9 @@ restService.post("/user", function(req, res) {
       ? req.body.result.parameters.echoText
       : "Seems like some problem. Speak again.";
  
-   for(var id = 0;id<empcount;id++){
-	speech  =  jsonObj.employess[id].name+' '+jsonObj.employess[id].shift,
-    }
+   
   return res.json({
-     speech: speech,
+     speech: dataexm,
     displayText: speech,
     source: "webhook-echo-sample"
   });
