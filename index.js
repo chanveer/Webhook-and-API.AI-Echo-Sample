@@ -31,7 +31,7 @@ var jsonObj = require("./db.json");
 var string1 = "";
 
 for (var property1 in jsonObj.employess) {
-  string1 = string1 + jsonObj.employess[property1].name+":"jsonObj.employess[property1].shift;
+  string1 = string1 + jsonObj.employess[property1].name + ":" + jsonObj.employess[property1].shift;
 }
 	
 
