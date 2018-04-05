@@ -23,7 +23,9 @@ restService.post("/check", function(req, res) {
   if(req.body.result.parameters = "leave"){
   var string1 = "";
   for (var property1 in jsonObj.employess) {
-	  string1 = string1 + jsonObj.employess[property1].status + " ";
+	  if(jsonObj.employess[property1].status == 0){
+	     string1 = string1 + jsonObj.employess[property1].name + " ";
+	  }
   }
   var speech =
     req.body.result &&
