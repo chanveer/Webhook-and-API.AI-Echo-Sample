@@ -28,7 +28,7 @@ restService.get("/echo", function(req, res) {
       : "Seems like some problem. Speak again.";
   return res.json({
     speech: string1,
-    displayText: string1,
+    displayText: speech,
     source: "webhook-echo-sample"
   });
 });
