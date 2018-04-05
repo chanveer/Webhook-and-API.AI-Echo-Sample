@@ -21,7 +21,7 @@ restService.post("/user", function(req, res) {
     
    
   return res.json({
-     speech: string1,
+     speech: speech,
     displayText: speech,
     source: "webhook-echo-sample"
   });
