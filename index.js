@@ -12,16 +12,16 @@ restService.use(
 );
 
 restService.use(bodyParser.json());
-
+ var speech = "";
 
 restService.post("/check", function(req, res) {
   var jsonObj = require("./db.json");
-  var string1 = "";
+ 
 	
  if(req.body.result.parameters = "echoText"){
   
   for (var property1 in jsonObj.employess) {
-	 string1 = string1 + jsonObj.employess[property1].name + " : " + jsonObj.employess[property1].shift + " ";
+	 speech = speech + jsonObj.employess[property1].name + " : " + jsonObj.employess[property1].shift + " ";
   }
   var speech =
     req.body.result &&
@@ -35,7 +35,7 @@ restService.post("/check", function(req, res) {
   
   for (var property1 in jsonObj.employess) {
 	  if(jsonObj.employess[property1].status == 0){
-	     string1 = string1 + jsonObj.employess[property1].name + " ";
+	     speech = speech + jsonObj.employess[property1].name + " ";
 	  }
   }
   var speech =
@@ -47,7 +47,7 @@ restService.post("/check", function(req, res) {
    }
 	
  return res.json({
-    speech: string1,
+    speech: speech,
     displayText: speech,
     source: "webhook-echo-sample"
   });
