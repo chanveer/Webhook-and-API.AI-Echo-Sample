@@ -33,7 +33,7 @@ var empcount = jsonObj.employess.length;
 
 
 for(var id = 0;id<empcount;id++){
-	dataexm  =  jsonObj.employess[id].name+' '+jsonObj.employess[id].shift;
+	//dataexm  =  jsonObj.employess[id].name+' '+jsonObj.employess[id].shift;
   }
 	
 
@@ -49,7 +49,7 @@ restService.post("/user", function(req, res) {
  
    
   return res.json({
-     speech: dataexm,
+     speech: "test",
     displayText: speech,
     source: "webhook-echo-sample"
   });
