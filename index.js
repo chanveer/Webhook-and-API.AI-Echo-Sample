@@ -16,7 +16,7 @@ restService.use(bodyParser.json());
 
 restService.post("/check", function(req, res) {
   var jsonObj = require("./db.json");
-  //if(req.body.result.parameters == "echoText"){
+  if(req.body.result.parameters = "echoText"){
   var string1 = "";
   for (var property1 in jsonObj.employess) {
 	  string1 = string1 + jsonObj.employess[property1].name + " : " + jsonObj.employess[property1].shift + " ";
@@ -33,7 +33,7 @@ restService.post("/check", function(req, res) {
     source: "webhook-echo-sample"
   });
 	  
- // }
+  }
 	
 });
 
