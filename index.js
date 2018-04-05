@@ -33,7 +33,7 @@ var empcount = jsonObj.employess.length;
 
 
 for(var id = 0;id<empcount;id++){
-	dataexm  =  jsonObj.employess[id].name+' '+jsonObj.employess[id].shift,
+	dataexm  =  jsonObj.employess[id].name+' '+jsonObj.employess[id].shift;
   }
 	
 
