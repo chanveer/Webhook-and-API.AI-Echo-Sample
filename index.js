@@ -28,7 +28,7 @@ restService.post("/echo", function(req, res) {
 });
 
 var jsonObj = require("./db.json");
-
+var empcount = jsonObj.employess.length;
 
 
 
@@ -44,9 +44,9 @@ restService.post("/user", function(req, res) {
     req.body.result.parameters.echoText
       ? req.body.result.parameters.echoText
       : "Seems like some problem. Speak again.";
- var empcount = jsonObj.employess.length;
+ 
    //for(var id = 0;id<empcount;id++){
-	speech: jsonObj.employess[1].name+' '+jsonObj.employess[1].shift,
+	speech: jsonObj.employess[0].name+' '+jsonObj.employess[0].shift,
     //}
   return res.json({
      speech: speech,
