@@ -15,12 +15,7 @@ restService.use(bodyParser.json());
 
 
 restService.post("/user", function(req, res) {
-  var jsonObj = require("./db.json");
-  var string1 = "";
 
-	for (var property1 in jsonObj.employess) {
-	  string1 = string1 + jsonObj.employess[property1].name + " : " + jsonObj.employess[property1].shift + " ";
-	}
   var speech =
     req.body.result && req.body.result.parameters && req.body.result.parameters.date ? req.body.result.parameters.date: "Seems like some problem. Speak again.";
     
