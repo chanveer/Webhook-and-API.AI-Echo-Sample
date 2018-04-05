@@ -39,12 +39,8 @@ for (var property1 in jsonObj.employess) {
 restService.post("/user", function(req, res) {
   
   var speech =
-    req.body.result &&
-    req.body.result.parameters &&
-    req.body.result.parameters.echoText
-      ? req.body.result.parameters.echoText
-      : "Seems like some problem. Speak again.";
- 
+    req.body.result && req.body.result.parameters && req.body.result.parameters.date ? req.body.result.parameters.date: "Seems like some problem. Speak again.";
+    
    
   return res.json({
      speech: string1,
