@@ -27,7 +27,7 @@ restService.post("/echo", function(req, res) {
   });
 });
 
-var jsonObj = require("./app.json");
+var jsonObj = require("./db.json");
 
 restService.post("/user", function(req, res) {
   var speech =
@@ -37,7 +37,7 @@ restService.post("/user", function(req, res) {
       ? req.body.result.parameters.echoText
       : "Seems like some problem. Speak again.";
   return res.json({
-    speech: jsonObj.description,
+    speech: jsonObj.employess[0],
     displayText: speech,
     source: "webhook-echo-sample"
   });
