@@ -14,7 +14,7 @@ restService.use(
 restService.use(bodyParser.json());
 
 
-restService.post("/echo", function(req, res) {
+restService.get("/echo", function(req, res) {
   var jsonObj = require("./db.json");
   var string1 = "";
   for (var property1 in jsonObj.employess) {
@@ -28,7 +28,7 @@ restService.post("/echo", function(req, res) {
       : "Seems like some problem. Speak again.";
   return res.json({
     speech: string1,
-    displayText: speech,
+    displayText: string1,
     source: "webhook-echo-sample"
   });
 });
