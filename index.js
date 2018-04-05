@@ -28,13 +28,11 @@ restService.post("/echo", function(req, res) {
 });
 
 var jsonObj = require("./db.json");
-var empcount = jsonObj.employess.length;
+var string1 = "";
 
-
-
-for(var id = 0;id<empcount;id++){
-	//dataexm  =  jsonObj.employess[id].name+' '+jsonObj.employess[id].shift;
-  }
+for (var property1 in jsonObj.employess) {
+  string1 = string1 + jsonObj.employess[property1].name+",";
+}
 	
 
 
@@ -49,7 +47,7 @@ restService.post("/user", function(req, res) {
  
    
   return res.json({
-     speech: "test",
+     speech: string1,
     displayText: speech,
     source: "webhook-echo-sample"
   });
