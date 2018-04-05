@@ -45,9 +45,9 @@ restService.post("/user", function(req, res) {
       ? req.body.result.parameters.echoText
       : "Seems like some problem. Speak again.";
   return res.json({
-    for(var id = 0;id<empcount;id++){
-        speech: jsonObj.employess[id].name+' '+jsonObj.employess[id].shift,
-    }
+    //for(var id = 0;id<empcount;id++){
+        speech: jsonObj.employess[0].name+' '+jsonObj.employess[0].shift,
+    //}
     displayText: speech,
     source: "webhook-echo-sample"
   });
