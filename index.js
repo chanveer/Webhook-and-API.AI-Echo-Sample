@@ -13,26 +13,33 @@ restService.use(
 
 restService.use(bodyParser.json());
 
+
 restService.post("/check", function(req, res) {
   var jsonObj = require("./db.json");
-  if(req.body.result.parameters = "echoText"){
+
+	
+
+	
+  if(req.body.result.parameters = "leave"){
   var string1 = "";
   for (var property1 in jsonObj.employess) {
-	  string1 = string1 + jsonObj.employess[property1].name + " : " + jsonObj.employess[property1].shift + " ";
+	  if(jsonObj.employess[property1].status == 0){
+	     string1 = string1 + jsonObj.employess[property1].name + " ";
+	  }
   }
   var speech =
     req.body.result &&
     req.body.result.parameters &&
-    req.body.result.parameters.echoText
-      ? req.body.result.parameters.echoText
+    req.body.result.parameters.leave
+      ? req.body.result.parameters.leave
       : "Seems like some problem. Speak again.";
-  return res.json({
+   }
+	
+ return res.json({
     speech: string1,
     displayText: speech,
     source: "webhook-echo-sample"
   });
-	  
-  }
 	
 });
 
