@@ -27,7 +27,7 @@ restService.post("/echo", function(req, res) {
   });
 });
 
-var test = require("./db.json");
+var jsonObj = require("./db.json");
 
 
 var empcount = jsonObj.employess.length;
@@ -45,7 +45,7 @@ restService.post("/user", function(req, res) {
       : "Seems like some problem. Speak again.";
   return res.json({
     for(var id = 0;id<empcount;id++){
-        speech: test.employess[id].name,
+        speech: jsonObj.employess[id].name,
     }
     displayText: speech,
     source: "webhook-echo-sample"
