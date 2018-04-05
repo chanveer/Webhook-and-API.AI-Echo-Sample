@@ -14,7 +14,7 @@ restService.use(
 restService.use(bodyParser.json());
 
 
-restService.post("/echo", function(req, res) {
+restService.post("/check", function(req, res) {
   var jsonObj = require("./db.json");
   var string1 = "";
   for (var property1 in jsonObj.employess) {
