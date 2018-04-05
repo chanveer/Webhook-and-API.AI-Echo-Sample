@@ -46,10 +46,10 @@ restService.post("/user", function(req, res) {
       : "Seems like some problem. Speak again.";
  
    //for(var id = 0;id<empcount;id++){
-	speech: jsonObj.employess[0].name+' '+jsonObj.employess[0].shift,
+	//speech: jsonObj.employess[0].name+' '+jsonObj.employess[0].shift,
     //}
   return res.json({
-     speech: speech,
+     speech: jsonObj.employess[0].name+' '+jsonObj.employess[0].shift,
     displayText: speech,
     source: "webhook-echo-sample"
   });
