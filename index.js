@@ -15,7 +15,7 @@ restService.use(bodyParser.json());
 
 
 restService.post("/echo", function(req, res) {
-	callApi1().then((output) => {
+	employeeSchedule().then((output) => {
 	var string2 = "";
 	for(var property1 in output) {
 		for(var property2 in output[property1].schedule) {
@@ -26,12 +26,6 @@ restService.post("/echo", function(req, res) {
 		}	
 
 	}
-	var speech =
-		req.body.result &&
-		req.body.result.parameters &&
-		req.body.result.parameters.echoText
-		? req.body.result.parameters.echoText
-		: "Seems like some problem. Speak again.";
 		return res.json({
 			speech: string2,
 			displayText: speech,
@@ -40,9 +34,19 @@ restService.post("/echo", function(req, res) {
     }).catch((error) => {
                                 
     });
+	
+	employeeleave().then((output) => {
+		return res.json({
+			speech: output,
+			displayText: speech,
+			source: "webhook-echo-sample"
+		});
+    }).catch((error) => {
+                                
+    });
  })	
 	
-function callApi1 () {
+function employeeSchedule () {
   return new Promise((resolve, reject) => {
 	var GoogleSpreadsheet = require('google-spreadsheet');
 	var creds = require('./client_secret.json');
@@ -102,6 +106,13 @@ function callApi1 () {
 		}
 	});
   })
+}
+
+
+function employeeleave () {
+  return new Promise((resolve, reject) => {
+		resolve("chan is on leave today");
+  });
 }
   
 restService.listen(process.env.PORT || 8000, function() {
