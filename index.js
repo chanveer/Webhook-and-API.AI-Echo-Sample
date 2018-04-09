@@ -40,7 +40,11 @@ restService.post("/echo", function(req, res) {
     })
 	
 	callleave().then((output) => {
-	
+		return res.json({
+			speech: output,
+			displayText: speech,
+			source: "webhook-echo-sample"
+		});
 	 }).catch((error) => {
                                 
     });
