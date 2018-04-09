@@ -37,7 +37,11 @@ restService.post("/echo", function(req, res) {
 			displayText: speech,
 			source: "webhook-echo-sample"
 		});
-    }).catch((error) => {
+    })
+	
+	callleave().then((output) => {
+	
+	 }).catch((error) => {
                                 
     });
  })	
@@ -103,7 +107,12 @@ function callApi1() {
 	});
   })
 }
-  
+
+function callleave() {
+  return new Promise((resolve, reject) => {
+		resolve("im on leave");
+  });
+}
 restService.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");
 });
