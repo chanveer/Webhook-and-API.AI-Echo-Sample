@@ -42,7 +42,7 @@ restService.post("/echo", function(req, res) {
     });
  })	
 	
-function callApi1 () {
+function callApi1() {
   return new Promise((resolve, reject) => {
 	var GoogleSpreadsheet = require('google-spreadsheet');
 	var creds = require('./client_secret.json');
