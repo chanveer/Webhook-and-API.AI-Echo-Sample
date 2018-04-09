@@ -87,10 +87,13 @@ function callApi1 () {
                                                                                                 }
                                                                                                 data.push(emp);
                                                                                 }
-									
+						var string1 = "";
+  for (var property1 in data) {
+	  string1 = string1 + data[property1].firstname + " : " + jsonObj.employess[property1].lastname + " ";
+  }			
 									 
                                                                                 //console.log(data[1].empid);
-                                                                                resolve(data[1].firstname);
+                                                                                resolve(string1);
                                                   }
                                                 });
                                 }
