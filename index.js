@@ -21,7 +21,7 @@ restService.post("/echo", function(req, res) {
 	
  		callApi1().then((output) => {
 			return res.json({
-		    speech: "uwuiwe",
+		    speech: output,
 		    displayText: "weeewwe",
 		    source: "webhook-echo-sample"
 		  });
