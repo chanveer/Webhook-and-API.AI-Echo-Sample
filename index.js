@@ -88,12 +88,9 @@ function callApi1 () {
                                                                                                 data.push(emp);
                                                                                 }
 									
-									 var string1 = "";
-  for (var property1 in jsonObj.data) {
-	  string1 = string1 + jsonObj.data[property1].firstname + " : " + jsonObj.data[property1].lastname + " ";
-  }
+									 
                                                                                 //console.log(data[1].empid);
-                                                                                resolve(string1);
+                                                                                resolve(data[1].firstname);
                                                   }
                                                 });
                                 }
