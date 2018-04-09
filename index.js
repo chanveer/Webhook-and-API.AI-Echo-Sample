@@ -48,7 +48,7 @@ var doc = new GoogleSpreadsheet('1h3ROhL1Tw_ChoIUzWWUWUoOqmElPKYKowdEFFeZfDAw');
 		      ? req.body.result.parameters.echoText
 		      : "Seems like some problem. Speak again.";
 		  return res.json({
-		    speech: creds.project_id,
+		    speech: creds.type,
 		    displayText: speech,
 		    source: "webhook-echo-sample"
 		  });
