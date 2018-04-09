@@ -35,6 +35,8 @@ var doc = new GoogleSpreadsheet('1h3ROhL1Tw_ChoIUzWWUWUoOqmElPKYKowdEFFeZfDAw');
                                 }
                                 else {
 					
+					cnt = rows1.length;
+					
 				}
 		});
 		
@@ -60,7 +62,7 @@ var doc = new GoogleSpreadsheet('1h3ROhL1Tw_ChoIUzWWUWUoOqmElPKYKowdEFFeZfDAw');
 		      ? req.body.result.parameters.echoText
 		      : "Seems like some problem. Speak again.";
 		  return res.json({
-		    speech: creds.type,
+		    speech: cnt,
 		    displayText: speech,
 		    source: "webhook-echo-sample"
 		  });
