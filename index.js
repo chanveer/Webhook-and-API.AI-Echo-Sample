@@ -29,11 +29,11 @@ restService.post("/echo", function(req, res) {
 				var string3 = "";
 																				
 				for(var property1 in output) {
-																					
-								
 					for(var property2 in output[property1].schedule) {
+					    if(output[property1].schedule[property2].date  = echoText){
 						 string2 =   string2 + output[property1].firstname + "  "  +  output[property1].schedule[property2].starttime  + " : " + output[property1].schedule[property2].endtime + '\r\n';
-					}	
+					    }
+					 }	
 
 				}
 			
