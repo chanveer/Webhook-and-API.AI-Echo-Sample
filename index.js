@@ -16,12 +16,16 @@ restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) {
 	callApi1().then((output) => {
+	
+	
+	
 	var string2 = "";
 	for(var property1 in output) {
 		for(var property2 in output[property1].schedule) {
 			var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
-				if(dateexcel   == req.body.result.parameters.date){
-					string2 =   string2 + output[property1].firstname + "  "  +  output[property1].schedule[property2].starttime  + " : " + output[property1].schedule[property2].endtime + '\r\n';
+			
+				if((output[property1].schedule[property2].status   == 0)&&(dateexcel   == req.body.result.parameters.date1)){
+					string2 =   string2 + output[property1].firstname + "  "  +  output[property1].schedule[property2].date + " " + output[property1].schedule[property2].status    + '\r\n';
 				}
 		}	
 
@@ -89,6 +93,7 @@ function callApi1 () {
 										sch.starttime = data2[row2]['starttime'];
 										sch.endtime = data2[row2]['endtime'];
 										sch.location = data2[row2]['location'];
+										sch.status = data2[row2]['status'];
 										emp.schedule.push(sch);
 									}
 								}
