@@ -21,11 +21,18 @@ restService.post("/echo", function(req, res) {
   //var jsonObj = require("./db.json");
 	
  		callApi1().then((output) => {
-			return res.json({
-		    speech: output,
-		    displayText: "weeewwe",
-		    source: "webhook-echo-sample"
-		  });
+			
+			  var speech =
+			    req.body.result &&
+			    req.body.result.parameters &&
+			    req.body.result.parameters.echoText
+			      ? req.body.result.parameters.echoText
+			      : "Seems like some problem. Speak again.";
+			  return res.json({
+			    speech: speech,
+			    displayText: speech,
+			    source: "webhook-echo-sample"
+			  });
                   }).catch((error) => {
                                 // If there is an error let the user know
                                 //res.setHeader('Content-Type', 'application/json');
