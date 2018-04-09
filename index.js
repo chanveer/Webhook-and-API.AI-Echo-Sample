@@ -13,99 +13,47 @@ restService.use(
 
 restService.use(bodyParser.json());
 
+ 
+ restService.post('/echo', function(req, res) {
+    console.log('=============' + req.body.result.action)
+    switch (req.body.result.action) {
+        case "callApi1":
 
-restService.post("/echo", function(req, res) {
-	callApi1().then((output) => {
-	
-	
-	
-	var string2 = "";
-	for(var property1 in output) {
-		for(var property2 in output[property1].schedule) {
-			var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
-			
-				if((output[property1].schedule[property2].status   == 0)&&(dateexcel   == req.body.result.parameters.date1)){
-					string2 =   string2 + output[property1].firstname + "  "  +  output[property1].schedule[property2].date + " " + output[property1].schedule[property2].status    + '\r\n';
-				}
-		}	
+                return res.json({
+                    speech: "You may like",
+                    source: 'webhook-echo-one',
+         
+                });
+            
+            break;
 
-	}
-	var speech =
-		req.body.result &&
-		req.body.result.parameters &&
-		req.body.result.parameters.echoText
-		? req.body.result.parameters.echoText
-		: "Seems like some problem. Speak again.";
-		return res.json({
-			speech: string2,
-			displayText: speech,
-			source: "webhook-echo-sample"
-		});
-    }).catch((error) => {
-                                
-    });
- })	
+        case "callleave":
+            
+                return res.json({
+                    speech: "Payment successful",
+                    source: 'webhook-echo-one'
+                });
+            
+            break;
+
+          
+
+    }
+
+
+
+});
+
 	
-function callApi1 () {
+function callAvailable () {
   return new Promise((resolve, reject) => {
-	var GoogleSpreadsheet = require('google-spreadsheet');
-	var creds = require('./client_secret.json');
-	// Create a document object using the ID of the spreadsheet - obtained from its URL.
-	var doc = new GoogleSpreadsheet('1sMkMyVP9eRXQ6HmU9BTXuDJP5WPC28RdslbCPl_fR9Q');
+	resolve("Available")
+  })
+}
 
-	// Authenticate with the Google Spreadsheets API.
-	doc.useServiceAccountAuth(creds, function (err) {
-                                
-		// Get all of the rows from the spreadsheet.
-		if(err){
-		 reject(err);	
-		}else{
-			// Get all of the rows from the spreadsheet.
-			doc.getRows(1, function (err1, rows1) {
-				if (err1) {
-					console.log(err1);
-					reject(err1);
-				}
-				else {
-					var data1 = rows1;
-					doc.getRows(2, function (err2, rows2) {
-						if (err2) {
-							console.log(err2);
-							reject(err2);
-						}
-						else {
-							var data = [];
-							var data2 = rows2;
-							for (let row1 in data1) {
-								var emp = {};
-								emp.empid = data1[row1]['empid'];
-								emp.firstname = data1[row1]['firstname'];
-								emp.lastname = data1[row1]['lastname'];
-								emp.email = data1[row1]['email'];
-								emp.phone = data1[row1]['phone'];
-								if (!('schedule' in emp))
-												emp.schedule = [];
-								for (let row2 in data2) {
-									var sch = {};
-									if (data2[row2]['employeeid'] == data1[row1]['empid']) {
-										sch.date = data2[row2]['date'];
-										sch.employeeid = data2[row2]['employeeid'];
-										sch.starttime = data2[row2]['starttime'];
-										sch.endtime = data2[row2]['endtime'];
-										sch.location = data2[row2]['location'];
-										sch.status = data2[row2]['status'];
-										emp.schedule.push(sch);
-									}
-								}
-								data.push(emp);
-							}
-							resolve(data);
-						}
-					});
-				}
-			});			
-		}
-	});
+function callleave () {
+  return new Promise((resolve, reject) => {
+	resolve("leave")
   })
 }
   
