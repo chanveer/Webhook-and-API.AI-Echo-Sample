@@ -41,8 +41,8 @@ restService.post("/echo", function(req, res) {
 	
 	callleave().then((output) => {
 		return res.json({
-			speech: output,
-			displayText: speech,
+			speech: "hello im on leave",
+			displayText: "asasas",
 			source: "webhook-echo-sample"
 		});
 	 }).catch((error) => {
