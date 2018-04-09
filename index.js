@@ -38,9 +38,7 @@ restService.post("/echo", function(req, res) {
 						 string2 =   string2 + output[property1].firstname + "  "  +  output[property1].schedule[property2].starttime  + " : " + output[property1].schedule[property2].endtime + '\r\n';
 					    	// string2 = string2 + dateexcel + " " + req.body.result.parameters.date;
 						
-						}else{
-					    	string2  = "No data found";
-					    }
+						}
 					 }	
 
 				}
