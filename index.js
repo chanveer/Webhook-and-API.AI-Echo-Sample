@@ -28,6 +28,16 @@ var doc = new GoogleSpreadsheet('1h3ROhL1Tw_ChoIUzWWUWUoOqmElPKYKowdEFFeZfDAw');
 	
 	doc.useServiceAccountAuth(creds, function (err) {
 		
+		doc.getRows(1, function (err1, rows1) {
+                                if (err1) {
+                                                console.log(err1);
+                                                reject(err1);
+                                }
+                                else {
+					
+				}
+		});
+		
 	});
 	
  var request = http.get("https://jsonblob.com/api/jsonBlob/9232c6f6-37f0-11e8-a0f9-1f16febeb1ac",function(response){
