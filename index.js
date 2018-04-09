@@ -13,21 +13,18 @@ restService.use(
 
 restService.use(bodyParser.json());
 
- 
- restService.post('/echo', function(req, res) {
+restService.post('/echo', function(req, res) {
     console.log('=============' + req.body.result.action)
     switch (req.body.result.action) {
-        case "callApi1":
-
+		 case "callSchedule":
 			callApi1data().then((output) => {
-			
 				var string2 = "";
 				for(var property1 in output) {
 					for(var property2 in output[property1].schedule) {
 						var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
-							if(dateexcel   == req.body.result.parameters.date){
-								string2 =   string2 + output[property1].firstname + "  "  +  output[property1].schedule[property2].starttime  + " : " + output[property1].schedule[property2].endtime + '\r\n';
-							}
+						if(dateexcel   == req.body.result.parameters.date){
+							string2 =   string2 + output[property1].firstname + "  "  +  output[property1].schedule[property2].starttime  + " : " + output[property1].schedule[property2].endtime + '\r\n';
+						}
 					}	
 
 				}
@@ -36,41 +33,48 @@ restService.use(bodyParser.json());
                     source: 'webhook-echo-one',
          
                 });
-				
-				
-            });
-			
-            break;
+			});
+		break;
 
         case "callleave":
             callApi1data().then((output) => {
-			
 				var string3 = "";
 				for(var property1 in output) {
 					for(var property2 in output[property1].schedule) {
 						var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
+						if((output[property1].schedule[property2].status   == 0)&&(dateexcel   == req.body.result.parameters.date1)){
+							string3 =   string3 + output[property1].firstname + "  "  +  output[property1].schedule[property2].date + " " + output[property1].schedule[property2].status    + '\r\n';
+						}
+					}	
+				}
+				return res.json({
+                    speech: string3,
+                    source: 'webhook-echo-one'
+                });
+			});
+        break;
+
+			
+		case "callAvail":
+            callApi1data().then((output) => {
+				var string1 = "";
+				for(var property1 in output) {
+					for(var property2 in output[property1].schedule) {
+						var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
 						
-							if((output[property1].schedule[property2].status   == 0)&&(dateexcel   == req.body.result.parameters.date1)){
-								string3 =   string3 + output[property1].firstname + "  "  +  output[property1].schedule[property2].date + " " + output[property1].schedule[property2].status    + '\r\n';
+							if((output[property1].schedule[property2].status   == 1)&&(dateexcel   == req.body.result.parameters.date1)){
+								string1 =   string3 + output[property1].firstname + "  "  +  output[property1].schedule[property2].date + " " + output[property1].schedule[property2].status    + '\r\n';
 							}
 					}	
 
 				}
-			
-                return res.json({
-                    speech: string3,
+				return res.json({
+                    speech: string1,
                     source: 'webhook-echo-one'
                 });
-				
-            });
-            break;
-
-          
-
+			});
+         break;
     }
-
-
-
 });
 
 	
@@ -136,9 +140,7 @@ function callApi1data () {
 	});
   })
 }
-
-
-  
+ 
 restService.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");
 });
