@@ -89,7 +89,7 @@ function callApi1 () {
                                                                                 }
 						var string1 = "";
   for (var property1 in data) {
-	  string1 = string1 + data[property1].firstname + " : " + jsonObj.employess[property1].lastname + " ";
+	  string1 = string1 + data[property1].firstname + " : " + jsonObj.data[property1].lastname + " ";
   }			
 									 
                                                                                 //console.log(data[1].empid);
