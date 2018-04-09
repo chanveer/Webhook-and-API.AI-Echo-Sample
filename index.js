@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 var http = require('https');
-var os = require("os");
+
 
 const restService = express();
 
@@ -90,7 +90,7 @@ function callApi1 () {
                                                                                 }
 						var string1 = "";
   for (var property1 in data) {
-	  string1 = string1 + data[property1].firstname + " : " + data[property1].lastname + os.EOL;
+	  string1 = string1 + data[property1].firstname + " : " + data[property1].lastname + '\r\n';
   }			
 									 
                                                                                 //console.log(data[1].empid);
