@@ -25,6 +25,11 @@ var creds = require('./client_secret.json');
                 // Create a document object using the ID of the spreadsheet - obtained from its URL.
 var doc = new GoogleSpreadsheet('1h3ROhL1Tw_ChoIUzWWUWUoOqmElPKYKowdEFFeZfDAw');
 	
+	
+	doc.useServiceAccountAuth(creds, function (err) {
+		
+	});
+	
  var request = http.get("https://jsonblob.com/api/jsonBlob/9232c6f6-37f0-11e8-a0f9-1f16febeb1ac",function(response){
 	 var body = "";
 	 response.on("data",function(chunk){
