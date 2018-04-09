@@ -71,7 +71,7 @@ function callApi1 () {
                 var creds = require('./client_secret.json');
 
                 // Create a document object using the ID of the spreadsheet - obtained from its URL.
-                var doc = new GoogleSpreadsheet('1h3ROhL1Tw_ChoIUzWWUWUoOqmElPKYKowdEFFeZfDAw');
+                var doc = new GoogleSpreadsheet('1sMkMyVP9eRXQ6HmU9BTXuDJP5WPC28RdslbCPl_fR9Q');
 
                 // Authenticate with the Google Spreadsheets API.
                 doc.useServiceAccountAuth(creds, function (err) {
