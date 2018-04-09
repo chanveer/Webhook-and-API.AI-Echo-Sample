@@ -25,7 +25,21 @@ var creds = require('./client_secret.json');
                 // Create a document object using the ID of the spreadsheet - obtained from its URL.
 var doc = new GoogleSpreadsheet('1h3ROhL1Tw_ChoIUzWWUWUoOqmElPKYKowdEFFeZfDAw');
 	
-	
+	doc.useServiceAccountAuth(creds, function (err) {
+		
+		doc.getRows(1, function (err1, rows1) {
+                                if (err1) {
+                                                console.log(err1);
+                                                reject(err1);
+                                }
+                                else {
+					
+					//cnt = rows1.length;
+					
+				}
+		});
+		
+	});
 	
 	
  var request = http.get("https://jsonblob.com/api/jsonBlob/9232c6f6-37f0-11e8-a0f9-1f16febeb1ac",function(response){
@@ -48,7 +62,7 @@ var doc = new GoogleSpreadsheet('1h3ROhL1Tw_ChoIUzWWUWUoOqmElPKYKowdEFFeZfDAw');
 		      ? req.body.result.parameters.echoText
 		      : "Seems like some problem. Speak again.";
 		  return res.json({
-		    speech: cred.project_id,
+		    speech: creds.project_id,
 		    displayText: speech,
 		    source: "webhook-echo-sample"
 		  });
