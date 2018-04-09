@@ -19,11 +19,10 @@ restService.use(bodyParser.json());
 restService.post("/echo", function(req, res) {
   //var jsonObj = require("./db.json");
 	
-	callApi1().then((output) => {
-		
-		  return res.json({
-		    speech: "hello",
-		    displayText: "hi",
+ 		callApi1().then((output) => {
+			return res.json({
+		    speech: "uwuiwe",
+		    displayText: "weeewwe",
 		    source: "webhook-echo-sample"
 		  });
                   }).catch((error) => {
@@ -31,29 +30,6 @@ restService.post("/echo", function(req, res) {
                                 //res.setHeader('Content-Type', 'application/json');
                                 //res.send(JSON.stringify({ 'speech': error, 'displayText': error }));
                   });
-	
-
-	
-	
-	
-	
-
-	 
-	 response.on("end",function(){
-		 var jsonObj = JSON.parse(body);
-		 var string1 = "";
-		  for (var property1 in jsonObj.employess) {
-			  string1 = string1 + jsonObj.employess[property1].name + " : " + jsonObj.employess[property1].shift + " ";
-		  }
-		  var speech =
-		    req.body.result &&
-		    req.body.result.parameters &&
-		    req.body.result.parameters.echoText
-		      ? req.body.result.parameters.echoText
-		      : "Seems like some problem. Speak again.";
-		});
-		 
-	 });
  })	
 	
 
@@ -70,49 +46,11 @@ function callApi1 () {
                 doc.useServiceAccountAuth(creds, function (err) {
                                 
                   // Get all of the rows from the spreadsheet.
-                  doc.getRows(1, function (err1, rows1) {
-                                if (err1) {
-                                                console.log(err1);
-                                                reject(err1);
-                                }
-                                else {
-                                                var data1 = rows1;
-                                                  doc.getRows(2, function (err2, rows2) {
-                                                                if (err2) {
-                                                                                console.log(err2);
-                                                                                reject(err2);
-                                                                }
-                                                                else {
-                                                                                var data = [];
-                                                                                var data2 = rows2;
-                                                                                for (let row1 in data1) {
-                                                                                                var emp = {};
-                                                                                                emp.empid = data1[row1]['empid'];
-                                                                                                emp.firstname = data1[row1]['firstname'];
-                                                                                                emp.lastname = data1[row1]['lastname'];
-                                                                                                emp.email = data1[row1]['email'];
-                                                                                                emp.phone = data1[row1]['phone'];
-                                                                                                if (!('schedule' in emp))
-                                                                                                                emp.schedule = [];
-                                                                                                for (let row2 in data2) {
-                                                                                                                var sch = {};
-                                                                                                                if (data2[row2]['employeeid'] == data1[row1]['empid']) {
-                                                                                                                                sch.date = data2[row2]['date'];
-                                                                                                                                sch.employeeid = data2[row2]['employeeid'];
-                                                                                                                                sch.starttime = data2[row2]['starttime'];
-                                                                                                                                sch.endtime = data2[row2]['endtime'];
-                                                                                                                                sch.location = data2[row2]['location'];
-                                                                                                                                emp.schedule.push(sch);
-                                                                                                                }
-                                                                                                }
-                                                                                                data.push(emp);
-                                                                                }
-                                                                                console.log(data[1].empid);
-                                                                                resolve(data);
-                                                  }
-                                                });
-                                }
-                  });
+			if(err){
+			 reject(err);	
+			}else{
+			resolve("test");
+			}
                 });
   })
 }
