@@ -19,21 +19,23 @@ restService.use(bodyParser.json());
     switch (req.body.result.action) {
         case "callApi1":
 
+			callApi1data().then((output) => {
                 return res.json({
-                    speech: "You may like",
+                    speech: output,
                     source: 'webhook-echo-one',
          
                 });
-            
+            });
+			
             break;
 
         case "callleave":
-            
+            callleavedata().then((output) => {
                 return res.json({
-                    speech: "Payment successful",
+                    speech: output,
                     source: 'webhook-echo-one'
                 });
-            
+            });
             break;
 
           
@@ -45,13 +47,13 @@ restService.use(bodyParser.json());
 });
 
 	
-function callAvailable () {
+function callApi1data () {
   return new Promise((resolve, reject) => {
 	resolve("Available")
   })
 }
 
-function callleave () {
+function callleavedata () {
   return new Promise((resolve, reject) => {
 	resolve("leave")
   })
