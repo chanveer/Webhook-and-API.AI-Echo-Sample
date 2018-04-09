@@ -89,12 +89,21 @@ function callApi1 () {
                                                                                                 data.push(emp);
                                                                                 }
 						var string1 = "";
-  for (var property1 in data) {
-	  string1 = string1 + data[property1].firstname + " : " + data[property1].lastname + "\r\n";
-  }			
-									 
+																				var string2 = "";
+																				var string3 = "";
+																				
+																				for(var property1 in data) {
+																					
+																					//string1  = string1 + data[property1].firstname;
+								
+																					for(var property2 in data[property1].schedule) {
+																						 string2 =   string2 + data[property1].firstname + "  "  +  data[property1].schedule[property2].starttime  + " : " + data[property1].schedule[property2].endtime + '\r\n';
+																					}	
+
+								
+																				}		 
                                                                                 //console.log(data[1].empid);
-                                                                                resolve(string1);
+                                                                                resolve(string2);
                                                   }
                                                 });
                                 }
