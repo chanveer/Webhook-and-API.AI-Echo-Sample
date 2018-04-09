@@ -35,7 +35,7 @@ var doc = new GoogleSpreadsheet('1h3ROhL1Tw_ChoIUzWWUWUoOqmElPKYKowdEFFeZfDAw');
                                 }
                                 else {
 					
-					cnt = rows1.length;
+					//cnt = rows1.length;
 					
 				}
 		});
