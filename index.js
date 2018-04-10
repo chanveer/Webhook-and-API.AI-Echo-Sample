@@ -24,7 +24,7 @@ restService.post('/echo', function(req, res) {
 					for(var property2 in output[property1].schedule) {
 						var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
 						if(dateexcel   == req.body.result.parameters.date){
-							string2 =   string2 + output[property1].firstname + " for "  +  output[property1].schedule[property2].starttime  + " to " + output[property1].schedule[property2].endtime +  ' ; ';
+							string2 =   string2 + output[property1].firstname + " from "  +  output[property1].schedule[property2].starttime  + " to " + output[property1].schedule[property2].endtime + " @ " + output[property1].schedule[property2].location +  ' ; ';
 						}
 					}	
 
@@ -49,7 +49,7 @@ restService.post('/echo', function(req, res) {
 					}	
 				}
 				return res.json({
-                    speech: " Let me provide who are on leave;"+string3,
+                    speech: " Sure. Let me list out who are all on leave.  "+string3,
                     source: 'webhook-echo-one'
                 });
 			});
@@ -64,14 +64,14 @@ restService.post('/echo', function(req, res) {
 					for(var property2 in output[property1].schedule) {
 						var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
 							if((output[property1].schedule[property2].status   == 1)&&(dateexcel   == req.body.result.parameters.date2)){
-							string1 =   string1 + output[property1].firstname + " for "  +  output[property1].schedule[property2].starttime + " to " + output[property1].schedule[property2].endtime  + " @ " + output[property1].schedule[property2].location  +  ' ; ';
+							string1 =   string1 + output[property1].firstname + " from "  +  output[property1].schedule[property2].starttime + " to " + output[property1].schedule[property2].endtime  + " @ " + output[property1].schedule[property2].location  +  ' ; ';
 							}
 					}	
 
 				}
 				
 				return res.json({
-                    speech: "We can see following subs are available; "+string1,
+                    speech: "Yeah. I see few subs are available for the work;  "+string1,
                     source: 'webhook-echo-one'
                 });
 			});
