@@ -44,7 +44,7 @@ restService.post('/echo', function(req, res) {
 					for(var property2 in output[property1].schedule) {
 						var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
 						if((output[property1].schedule[property2].status   == 0)&&(dateexcel   == req.body.result.parameters.date1)){
-							string3 =   string3 + output[property1].firstname + " for  "  +  output[property1].schedule[property2].starttime + " : " + output[property1].schedule[property2].endtime    + ' ; ';
+							string3 =   string3 + output[property1].firstname + " for  "  +  output[property1].schedule[property2].starttime + " : " + output[property1].schedule[property2].endtime + "@" + output[property1].schedule[property2].location   + ' ; ';
 						}
 					}	
 				}
