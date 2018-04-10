@@ -49,7 +49,7 @@ restService.post('/echo', function(req, res) {
 					}	
 				}
 				return res.json({
-                    speech: " Let me provide who are on leave => "+string3,
+                    speech: " Let me provide who are on leave;"+string3,
                     source: 'webhook-echo-one'
                 });
 			});
@@ -71,7 +71,7 @@ restService.post('/echo', function(req, res) {
 				}
 				
 				return res.json({
-                    speech: "We can see following subs are available => "+string1,
+                    speech: "We can see following subs are available; "+string1,
                     source: 'webhook-echo-one'
                 });
 			});
