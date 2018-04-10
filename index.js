@@ -24,7 +24,7 @@ restService.post('/echo', function(req, res) {
 					for(var property2 in output[property1].schedule) {
 						var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
 						if(dateexcel   == req.body.result.parameters.date){
-							string2 =   string2 + output[property1].firstname + " from "  +  output[property1].schedule[property2].starttime  + " : " + output[property1].schedule[property2].endtime +  ' ';
+							string2 =   string2 + output[property1].firstname + " from "  +  output[property1].schedule[property2].starttime  + " : " + output[property1].schedule[property2].endtime +  ' ; ';
 						}
 					}	
 
@@ -44,7 +44,7 @@ restService.post('/echo', function(req, res) {
 					for(var property2 in output[property1].schedule) {
 						var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
 						if((output[property1].schedule[property2].status   == 0)&&(dateexcel   == req.body.result.parameters.date1)){
-							string3 =   string3 + output[property1].firstname + "  "  +  output[property1].schedule[property2].date + " " + output[property1].schedule[property2].status    + ' ';
+							string3 =   string3 + output[property1].firstname + "  "  +  output[property1].schedule[property2].starttime + " " + output[property1].schedule[property2].endtime    + ' ; ';
 						}
 					}	
 				}
@@ -64,7 +64,7 @@ restService.post('/echo', function(req, res) {
 					for(var property2 in output[property1].schedule) {
 						var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
 							if((output[property1].schedule[property2].status   == 1)&&(dateexcel   == req.body.result.parameters.date2)){
-							string1 =   string1 + output[property1].firstname + "  "  +  output[property1].schedule[property2].date + " " + output[property1].schedule[property2].status    + ' ';
+							string1 =   string1 + output[property1].firstname + "  "  +  output[property1].schedule[property2].starttime + " " + output[property1].schedule[property2].endtime    +  ' ; ';
 							}
 					}	
 
