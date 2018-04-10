@@ -49,7 +49,7 @@ restService.post('/echo', function(req, res) {
 					}	
 				}
 				return res.json({
-                    speech: " Sure. Let me list out who are all on leave.  "+string3,
+                    speech: " Sure. Let me provide the list .  "+string3,
                     source: 'webhook-echo-one'
                 });
 			});
