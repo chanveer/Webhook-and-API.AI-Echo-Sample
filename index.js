@@ -30,7 +30,7 @@ restService.post('/echo', function(req, res) {
 
 				}
                 return res.json({
-                    speech: string2,
+                    speech: string2 + " are available for schedule given",
                     source: 'webhook-echo-one',
          
                 });
