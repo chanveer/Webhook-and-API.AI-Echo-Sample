@@ -30,7 +30,7 @@ restService.post('/echo', function(req, res) {
 
 				}
                 return res.json({
-                    speech: string2 + "  on schedule.",
+                    speech: " Sure! For today schedule => " +string2,
                     source: 'webhook-echo-one',
          
                 });
@@ -49,7 +49,7 @@ restService.post('/echo', function(req, res) {
 					}	
 				}
 				return res.json({
-                    speech: string3 + "  on leave.",
+                    speech: " Let me provide who are on leave => "+string3,
                     source: 'webhook-echo-one'
                 });
 			});
@@ -71,7 +71,7 @@ restService.post('/echo', function(req, res) {
 				}
 				
 				return res.json({
-                    speech: string1 + " are available.",
+                    speech: "We can see following employee are available "+string1,
                     source: 'webhook-echo-one'
                 });
 			});
