@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const restService = express();
 var dateFormat = require('dateformat');
 var http = require('https');
+var os = require('os');
 
 restService.use(
   bodyParser.urlencoded({
@@ -23,7 +24,7 @@ restService.post('/echo', function(req, res) {
 					for(var property2 in output[property1].schedule) {
 						var dateexcel = dateFormat(output[property1].schedule[property2].date, "yyyy-mm-dd");
 						if(dateexcel   == req.body.result.parameters.date){
-							string2 =   string2 + output[property1].firstname + "  "  +  output[property1].schedule[property2].starttime  + " : " + output[property1].schedule[property2].endtime + '\n\n';
+							string2 =   string2 + output[property1].firstname + "  "  +  output[property1].schedule[property2].starttime  + " : " + output[property1].schedule[property2].endtime + os.EOL;
 						}
 					}	
 
