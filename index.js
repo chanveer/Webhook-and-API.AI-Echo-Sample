@@ -17,13 +17,13 @@ restService.post('/echo', function(req, res) {
     console.log('=============' + req.body.result.action)
     switch (req.body.result.action) {
 		 case "Adddata":
-			callApi1data().then((output) => {
+			
 				var string2 = "data has been added pls check the sheet";
                 return res.json({
                     speech: string2,
                     source: 'webhook-echo-one',
 				});
-			});
+			
 		break;
     }
 });
