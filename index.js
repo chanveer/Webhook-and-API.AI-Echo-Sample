@@ -34,7 +34,7 @@ function callApi1data () {
 	var async = require('async');
 	var creds = require('./client_secret.json');
 	// Create a document object using the ID of the spreadsheet - obtained from its URL.
-	var doc = new GoogleSpreadsheet('1TMG7tWxF0HhpyIHLHOtbGtnHiFO6ICNzvDeAs3LqDWE');
+	var doc = new GoogleSpreadsheet('1sMkMyVP9eRXQ6HmU9BTXuDJP5WPC28RdslbCPl_fR9Q');
 	var sheet;
 	var data = "data has been added pls check the sheet";
 	async.series([
