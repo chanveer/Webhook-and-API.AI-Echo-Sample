@@ -14,8 +14,8 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post('/echo', function(req, res) {
-    console.log('=============' + req.body.result.action)
-    switch (req.body.result.action) {
+    console.log('=============' + req.body.queryResult.action)
+    switch (req.body.queryResult.action) {
 		 case "Adddata":
 			callApi1data().then((output) => {
 				var string2 = "data has been added pls check the sheet";
