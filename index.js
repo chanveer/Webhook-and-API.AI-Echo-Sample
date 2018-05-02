@@ -16,7 +16,7 @@ restService.use(bodyParser.json());
 restService.post('/echo', function(req, res) {
     console.log('=============' + req.body.result.action)
     switch (req.body.result.action) {
-		 case "callSchedule":
+		 case "Adddata":
 			callApi1data().then((output) => {
 				var string2 = "data has been added pls check the sheet";
                 return res.json({
