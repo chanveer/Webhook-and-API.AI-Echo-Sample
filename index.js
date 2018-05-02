@@ -20,9 +20,8 @@ restService.post('/echo', function(req, res) {
 			//callApi1data().then((output) => {
 				var string2 = "data has been added pls check the sheet";
                 return res.json({
-                    speech: string2,
-                    source: 'webhook-echo-one',
-				});
+                    text: string2,
+		});
 			//});
 		break;
     }
