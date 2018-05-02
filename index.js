@@ -49,6 +49,27 @@ function callApi1data () {
 			}
 		 
 			doc.useServiceAccountAuth(creds, step);
+		  },
+		  function workingWithRows(step) {
+			// google provides some query options
+			sheet.getRows({
+			  offset: 1,
+			  orderby: 'col2'
+			}, function( err, rows ){
+			  console.log('Read '+rows.length+' rows');
+		 
+			  // the row is an object with keys set by the column headers
+			  rows[0].SLNO = '1';
+			  rows[0].PRODUCTNAME = 'apples';
+			  rows[0].QUANTITY = '20';
+			  rows[0].DATETIME = 'date'
+			  rows[0].save(); // this is async
+			  //console.log(rows[0]);
+			  // deleting a row
+			  //rows[0].del();  // this is async
+		 
+			  step();
+			});
 		  }
 		], function(err){
 			if( err ) {
