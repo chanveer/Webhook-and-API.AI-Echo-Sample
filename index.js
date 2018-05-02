@@ -37,6 +37,14 @@ function callApi1data () {
 	var doc = new GoogleSpreadsheet('1TMG7tWxF0HhpyIHLHOtbGtnHiFO6ICNzvDeAs3LqDWE');
 	var sheet;
 	var data = "data has been added pls check the sheet";
+	async.series([
+		
+		  
+		], function(err){
+			if( err ) {
+			  console.log('Error: '+err);
+			}
+		});
 	resolve(data);
   })
 }
