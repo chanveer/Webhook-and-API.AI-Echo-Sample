@@ -18,10 +18,16 @@ restService.post('/echo', function(req, res) {
     switch (req.body.result.action) {
 		 case "Adddata":
 		     callApi1data().then((output) => {
-			    var string2 = "";
-				for(var property1 in output) {
-					string2 =   string2 + output[property1].productname + ";";
-				}
+			    
+				// Authenticate with the Google Spreadsheets API.
+				doc.useServiceAccountAuth(creds, function (err) {
+		 
+					doc.addRow(1, { SLNO: '3', PRODUCTNAME: 'banana',QUANTITY: '40' }, function(err) {
+					  if(err) {
+						console.log(err);
+					  }
+				   });
+				});
 				
                 return res.json({
                     speech: string2,
@@ -32,7 +38,8 @@ restService.post('/echo', function(req, res) {
     }
 });
 
-	
+
+/*	
 function callApi1data () {
   return new Promise((resolve, reject) => {
 		var GoogleSpreadsheet = require('google-spreadsheet');
@@ -69,6 +76,16 @@ function callApi1data () {
 			  });
 		});
   })
+}
+*/
+
+function callApi1dataWrite () {
+  return new Promise((resolve, reject) => {
+		var GoogleSpreadsheet = require('google-spreadsheet');
+		var creds = require('./client_secret.json');
+		// Create a document object using the ID of the spreadsheet - obtained from its URL.
+		var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
+ })
 }
  
 restService.listen(process.env.PORT || 8000, function() {
