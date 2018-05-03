@@ -25,7 +25,7 @@ restService.post('/echo', function(req, res) {
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
 		 
-					doc.addRow(1, { SLNO: '3', PRODUCTNAME: 'banana',QUANTITY: '40' }, function(err) {
+					doc.addRow(1, { SLNO: '3', PRODUCTNAME: req.body.result.parameters.any,QUANTITY: req.body.result.parameters.number }, function(err) {
 					  if(err) {
 						console.log(err);
 					  }
