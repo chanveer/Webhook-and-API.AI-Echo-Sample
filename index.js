@@ -17,11 +17,14 @@ restService.post('/echo', function(req, res) {
     console.log('=============' + req.body.result.action)
     switch (req.body.result.action) {
 		 case "Adddata":
-		     var string2 = "test";
-			 callApi1data().then((output) => {
+		     callApi1data().then((output) => {
+			    var string2 = "";
+				for(var property1 in output) {
+					string2 =   string2 + output[property1].productname + ";";
+				}
 				
                 return res.json({
-                    speech: output[0].productname,
+                    speech: string2,
                     source: 'webhook-echo-one',
 				});
 			});
