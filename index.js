@@ -17,7 +17,7 @@ restService.post('/echo', function(req, res) {
     console.log('=============' + req.body.result.action)
     switch (req.body.result.action) {
 		 case "Adddata":
-		     callApi1data().then((output) => {
+		     callApi1dataWrite().then((output) => {
 			    
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
