@@ -26,7 +26,7 @@ restService.post('/echo', function(req, res) {
 				doc.useServiceAccountAuth(creds, function (err) {
 					
 					//var quantity = req.body.result.parameters.number+" "+req.body.result.parameters.unit-weight-name;
-		 			var quantity = req.body.result.parameters.unit-weight-name+":";
+		 			var quantity = req.body.result.parameters.number+":";
 		 
 					doc.addRow(1, { SLNO: '3', PRODUCTNAME: req.body.result.parameters.any,QUANTITY: quantity}, function(err) {
 					  if(err) {
