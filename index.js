@@ -26,7 +26,7 @@ restService.post('/echo', function(req, res) {
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
 					
-					var productname = req.body.result.parameters.any
+					var productname = req.body.result.parameters.any;
 					var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
 		 	
 		 
