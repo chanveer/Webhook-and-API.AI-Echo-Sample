@@ -34,10 +34,10 @@ restService.post('/echo', function(req, res) {
 					  if(err) {
 						console.log(err);
 					  }
-					var result = "Given product name and quantity has been added successfully ";
+					
 				   });
 				});
-				
+		var result = "Given product name and quantity has been added successfully ";		
                 return res.json({
                     speech: result,
                     source: 'webhook-echo-one',
@@ -65,10 +65,10 @@ restService.post('/echo', function(req, res) {
 					  if(err) {
 						console.log(err);
 					  }
-					var result = "Given product name and quantity has been added successfully ";
+					
 				   });
 				});
-				
+		var result = "Given product name and quantity has been added successfully ";		
                 return res.json({
                     speech: result,
                     source: 'webhook-echo-one',
