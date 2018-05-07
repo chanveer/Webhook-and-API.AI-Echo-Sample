@@ -22,27 +22,22 @@ restService.post('/echo', function(req, res) {
 				// Create a document object using the ID of the spreadsheet - obtained from its URL.
 				var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
 				
-			    
+				
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
 					
 					var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
 		 			//var quantity = req.body.result.parameters.number+":";
-					if(quantity != ''){
-						doc.addRow(1, { PRODUCTNAME: req.body.result.parameters.any,QUANTITY: quantity}, function(err) {
-						  if(err) {
-							console.log(err);
-						  }else{
-							var result = "Data has been added";
-						  }
-					   });
-					}else{
-						var result = "Can you come again";
-					}
+		 
+					doc.addRow(1, { PRODUCTNAME: req.body.result.parameters.any,QUANTITY: quantity}, function(err) {
+					  if(err) {
+						console.log(err);
+					  }
+				   });
 				});
 				
                 return res.json({
-                    speech: result,
+                    speech: "Data has been added",
                     source: 'webhook-echo-one',
 				});
 			
