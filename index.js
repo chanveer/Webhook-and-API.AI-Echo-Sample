@@ -34,7 +34,7 @@ restService.post('/echo', function(req, res) {
 					  if(err) {
 						console.log(err);
 					  }
-					var result = "Given product name and quantity has been added successfully "+productname" : "+quantity;
+					var result = "Given product name and quantity has been added successfully ";
 				   });
 				});
 				
@@ -64,7 +64,7 @@ restService.post('/echo', function(req, res) {
 					  if(err) {
 						console.log(err);
 					  }
-					var result = "Given product name and quantity has been added successfully "+productname" : "+quantity;
+					var result = "Given product name and quantity has been added successfully ";
 				   });
 				});
 				
