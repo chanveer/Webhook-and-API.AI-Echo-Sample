@@ -37,7 +37,7 @@ restService.post('/echo', function(req, res) {
 					
 				   });
 				});
-		var result = "We have processed the request successfully ";		
+		var result = "Request has been captured in the sheet successfully.";		
                 return res.json({
                     speech: result,
                     source: 'webhook-echo-one',
@@ -68,7 +68,7 @@ restService.post('/echo', function(req, res) {
 					
 				   });
 				});
-		var result = "We have processed the request successfully ";		
+		var result = "Request has been captured in the sheet successfully.";		
                 return res.json({
                     speech: result,
                     source: 'webhook-echo-one',
