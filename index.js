@@ -34,7 +34,7 @@ restService.post('/echo', function(req, res) {
 					var date = dateFormat(new Date(), "yyyy-mm-dd"); 
 					
 						doc.addWorksheet({
-						  title: 'test-'+date
+						  title: 'INVENOTY-'+date
 						}, function(err, sheet) {
 							sheet.setHeaderRow(['productname', 'quantity']); //async
 						});
