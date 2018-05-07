@@ -21,6 +21,14 @@ restService.post('/echo', function(req, res) {
 			    var creds = require('./client_secret.json');
 				// Create a document object using the ID of the spreadsheet - obtained from its URL.
 				var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
+				
+				var speech =
+				req.body.result &&
+				req.body.result.action &&
+				req.body.result.parameters &&
+				req.body.result.parameters['unit-weight-name']
+				  ? req.body.result.parameters['unit-weight-name']
+				  : "Can you please come again";
 			    
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
