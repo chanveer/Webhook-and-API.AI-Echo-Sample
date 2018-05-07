@@ -26,7 +26,7 @@ restService.post('/echo', function(req, res) {
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
 					
-					var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
+					//var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
 		 			//var quantity = req.body.result.parameters.number+":";
 		 			var sheet;
 					var dateFormat = require('dateformat');
@@ -39,13 +39,14 @@ restService.post('/echo', function(req, res) {
 						});
 					
 				
-                return res.json({
-                    speech: "Data has been added",
-                    source: 'webhook-echo-one',
-				});
+						return res.json({
+							speech: "Data has been added",
+							source: 'webhook-echo-one',
+						});
 			
-		break;
-    }
+				break;
+				}
+	});
 });
  
 restService.listen(process.env.PORT || 8000, function() {
