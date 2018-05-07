@@ -26,10 +26,11 @@ restService.post('/echo', function(req, res) {
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
 					
+					var productname = req.body.result.parameters.any
 					var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
-		 			//var quantity = req.body.result.parameters.number+":";
+		 	
 		 
-					doc.addRow(1, { PRODUCTNAME: req.body.result.parameters.any,QUANTITY: quantity}, function(err) {
+					doc.addRow(1, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
 					  if(err) {
 						console.log(err);
 					  }
@@ -37,7 +38,7 @@ restService.post('/echo', function(req, res) {
 				});
 				
                 return res.json({
-                    speech: "Data has been added",
+                    speech: "Given product name and quantity has been added successfully "+productname" : "+quantity,
                     source: 'webhook-echo-one',
 				});
 			
@@ -66,7 +67,7 @@ restService.post('/echo', function(req, res) {
 				});
 				
                 return res.json({
-                    speech: "We have added the given  data",
+                    speech: "Given product name and quantity has been added successfully "+productname" : "+quantity,
                     source: 'webhook-echo-one',
 				});
 		break;
