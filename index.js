@@ -26,29 +26,14 @@ restService.post('/echo', function(req, res) {
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
 					
-					var sheet;
-					var dateFormat = require('dateformat');
-					var date = dateFormat(new Date(), "yyyy-mm-dd"); 
-					
-					doc.getInfo(function(err, info) {
-						var cnt = 0;
-						for(var property1 in info.worksheets) {
-						  
-						    console.log(info.worksheets[property1].title);
-							cnt++;
-						  
-						}
-						if(info.worksheets[cnt-1].title == 'INVENOTY-'+date){
-							var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
-							doc.addRow(1, { PRODUCTNAME: req.body.result.parameters.any,QUANTITY: quantity}, function(err) {
-							  if(err) {
-								console.log(err);
-							  }
-						   });
-						}else{
-						  console.log("sheet is not there");
-						}
-					});
+					var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
+		 			//var quantity = req.body.result.parameters.number+":";
+		 
+					doc.addRow(1, { PRODUCTNAME: req.body.result.parameters.any,QUANTITY: quantity}, function(err) {
+					  if(err) {
+						console.log(err);
+					  }
+				   });
 				});
 				
                 return res.json({
