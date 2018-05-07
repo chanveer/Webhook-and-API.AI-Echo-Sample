@@ -28,16 +28,16 @@ restService.post('/echo', function(req, res) {
 					
 					var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
 		 			//var quantity = req.body.result.parameters.number+":";
-		 
-					doc.addWorksheet({
-					      title: 'my new sheet'
-					    }, function(err, sheet) {
+		 			var sheet;
+					var dateFormat = require('dateformat');
+					var date = dateFormat(new Date(), "yyyy-mm-dd"); 
 
-					      // change a sheet's title
-					      sheet.setTitle('new title'); //async
-
-					      sheet.setHeaderRow(['name', 'age', 'phone']); //async
-					});
+						doc.addWorksheet({
+						  title: 'hi-'+date
+						}, function(err, sheet) {
+							sheet.setHeaderRow(['productname', 'quantity']); //async
+						});
+					
 				
                 return res.json({
                     speech: "Data has been added",
