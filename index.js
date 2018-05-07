@@ -37,7 +37,7 @@ restService.post('/echo', function(req, res) {
 					
 				   });
 				});
-		var result = "Given product name and quantity has been added successfully ";		
+		var result = "We have processed the request successfully ";		
                 return res.json({
                     speech: result,
                     source: 'webhook-echo-one',
@@ -68,7 +68,7 @@ restService.post('/echo', function(req, res) {
 					
 				   });
 				});
-		var result = "Given product name and quantity has been added successfully ";		
+		var result = "We have processed the request successfully ";		
                 return res.json({
                     speech: result,
                     source: 'webhook-echo-one',
