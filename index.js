@@ -54,9 +54,10 @@ restService.post('/echo', function(req, res) {
 				doc.useServiceAccountAuth(creds, function (err) {
 					
 					//var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
-		 			//var quantity = req.body.context.parameters.value;
+		 			var productname = req.body.contexts['parameters.number'];
+					var quantity = req.body.contexts['parameters.value'];
 		 
-					doc.addRow(1, { PRODUCTNAME: req.body.contexts.parameters.value,QUANTITY: req.body.contexts.parameters.number}, function(err) {
+					doc.addRow(1, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
 					  if(err) {
 						console.log(err);
 					  }
