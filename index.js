@@ -29,12 +29,15 @@ restService.post('/echo', function(req, res) {
 					var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
 		 			//var quantity = req.body.result.parameters.number+":";
 		 
-					doc.addRow(1, { PRODUCTNAME: req.body.result.parameters.any,QUANTITY: quantity}, function(err) {
-					  if(err) {
-						console.log(err);
-					  }
-				   });
-				});
+					doc.addWorksheet({
+					      title: 'my new sheet'
+					    }, function(err, sheet) {
+
+					      // change a sheet's title
+					      sheet.setTitle('new title'); //async
+
+					      sheet.setHeaderRow(['name', 'age', 'phone']); //async
+					});
 				
                 return res.json({
                     speech: "Data has been added",
