@@ -16,8 +16,9 @@ restService.use(bodyParser.json());
 restService.post('/echo', function(req, res) {
     console.log('=============' + req.body.result.action)
     switch (req.body.result.action) {
-		 case "Adddata":
-				var GoogleSpreadsheet = require('google-spreadsheet');
+		case "Adddata":
+		
+			var GoogleSpreadsheet = require('google-spreadsheet');
 			    var creds = require('./client_secret.json');
 				// Create a document object using the ID of the spreadsheet - obtained from its URL.
 				var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
@@ -31,22 +32,24 @@ restService.post('/echo', function(req, res) {
 		 			var sheet;
 					var dateFormat = require('dateformat');
 					var date = dateFormat(new Date(), "yyyy-mm-dd"); 
-
+					
 						doc.addWorksheet({
-						  title: 'hi-'+date
+						  title: 'test-'+date
 						}, function(err, sheet) {
 							sheet.setHeaderRow(['productname', 'quantity']); //async
 						});
-					
-				
-						return res.json({
-							speech: "Data has been added",
-							source: 'webhook-echo-one',
-						});
 			
-				break;
-				}
-	});
+				
+				});
+				
+			return res.json({
+				speech: "Data has been added",
+				source: 'webhook-echo-one',
+			});
+			
+		break;
+	}
+	
 });
  
 restService.listen(process.env.PORT || 8000, function() {
