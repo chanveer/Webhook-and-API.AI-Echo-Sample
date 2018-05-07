@@ -56,7 +56,7 @@ restService.post('/echo', function(req, res) {
 					//var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
 		 			//var quantity = req.body.context.parameters.value;
 		 
-					doc.addRow(1, { PRODUCTNAME: "apple",QUANTITY: "11"}, function(err) {
+					doc.addRow(1, { PRODUCTNAME: req.body.contexts.parameters.value,QUANTITY: req.body.contexts.parameters.number}, function(err) {
 					  if(err) {
 						console.log(err);
 					  }
