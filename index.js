@@ -21,7 +21,7 @@ restService.post('/echo', function(req, res) {
 			    var creds = require('./client_secret.json');
 				// Create a document object using the ID of the spreadsheet - obtained from its URL.
 				var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
-				
+				var result = "";
 				
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
@@ -51,6 +51,7 @@ restService.post('/echo', function(req, res) {
 			    var creds = require('./client_secret.json');
 				// Create a document object using the ID of the spreadsheet - obtained from its URL.
 				var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
+				var result = "";
 				
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
