@@ -44,7 +44,7 @@ restService.post('/echo', function(req, res) {
 							  }
 							
 						   });
-						   var result = "Request has been captured in the sheet successfully.";
+						   var result = "It is added";
 						 }else{
 						   doc.addWorksheet({
 							  title: 'Inventory-'+date
@@ -94,7 +94,7 @@ restService.post('/echo', function(req, res) {
 							  }
 							
 						   });
-						   var result = "Request has been captured in the sheet successfully.";
+						    var result = "It is added";
 						 }else{
 						   doc.addWorksheet({
 							  title: 'Inventory-'+date
@@ -143,7 +143,7 @@ restService.post('/echo', function(req, res) {
 							  }
 							
 						   });
-						   var result = "Request has been captured in the sheet successfully.";
+						    var result = "It is added";
 						 }else{
 						      doc.addWorksheet({
 							  title: 'Inventory-'+date
