@@ -93,14 +93,15 @@ restService.post('/echo', function(req, res) {
 						 }else{
 						   var result = "We have added the spread sheet please add the utterance again";
 						 }
+						 return res.json({
+							speech: result,
+							source: 'webhook-echo-one',
+						});
 				   });
 				});
 				
 						
-                return res.json({
-                    speech: result,
-                    source: 'webhook-echo-one',
-				});
+                
 		break;
 		
 		case "addproduct":
