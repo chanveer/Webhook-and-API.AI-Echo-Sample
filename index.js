@@ -46,6 +46,11 @@ restService.post('/echo', function(req, res) {
 						   });
 						   var result = "Request has been captured in the sheet successfully.";
 						 }else{
+						   doc.addWorksheet({
+							  title: 'Inventory-'+date
+							  }, function(err, sheet) {
+										sheet.setHeaderRow(['productname', 'quantity']); //async
+							  });
 						   var result = "We have added the spread sheet please add the utterance again";
 						 } 
 
@@ -91,6 +96,11 @@ restService.post('/echo', function(req, res) {
 						   });
 						   var result = "Request has been captured in the sheet successfully.";
 						 }else{
+						   doc.addWorksheet({
+							  title: 'Inventory-'+date
+						   }, function(err, sheet) {
+									sheet.setHeaderRow(['productname', 'quantity']); //async
+						   });
 						   var result = "We have added the spread sheet please add the utterance again";
 						 }
 						 return res.json({
@@ -135,6 +145,11 @@ restService.post('/echo', function(req, res) {
 						   });
 						   var result = "Request has been captured in the sheet successfully.";
 						 }else{
+						      doc.addWorksheet({
+							  title: 'Inventory-'+date
+							  }, function(err, sheet) {
+										sheet.setHeaderRow(['productname', 'quantity']); //async
+							  });
 							var result = "We have added the spread sheet please add the utterance again";
 						 }
 
