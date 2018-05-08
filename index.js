@@ -26,34 +26,16 @@ restService.post('/echo', function(req, res) {
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
 					
-					doc.getInfo(function(err, info) {
-						
-						var cnt = 0;
-						for(var property1 in info.worksheets) {
-							console.log(info.worksheets[property1].title);
-							cnt++;
-						  
-						}
-					
-						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
-							
-							var productname = req.body.result.parameters.any;
-							var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
-							doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
-							  if(err) {
-								console.log(err);
-							  }
-							});
-							
-						}else{
-							
-							
-						}
-					
+					var productname = req.body.result.parameters.any;
+					var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
+		 	
+		 
+					doc.addRow(1, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
+					  if(err) {
+						console.log(err);
+					  }
 					
 				   });
-				   
-				   
 				});
 				var result = "Request has been captured in the sheet successfully.";		
                 return res.json({
