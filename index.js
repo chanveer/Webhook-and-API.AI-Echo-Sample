@@ -46,7 +46,7 @@ restService.post('/echo', function(req, res) {
 						   });
 						   var result = "Request has been captured in the sheet successfully.";
 						 }else{
-							var result = "Today spread sheet has to be added";
+						   var result = "We have added the spread sheet please add the utterance again";
 						 } 
 
 						return res.json({
@@ -89,11 +89,14 @@ restService.post('/echo', function(req, res) {
 							  }
 							
 						   });
-						 }  
+						   var result = "Request has been captured in the sheet successfully.";
+						 }else{
+						   var result = "We have added the spread sheet please add the utterance again";
+						 }
 				   });
 				});
 				
-				var result = "Request has been captured in the sheet successfully.";		
+						
                 return res.json({
                     speech: result,
                     source: 'webhook-echo-one',
@@ -131,17 +134,17 @@ restService.post('/echo', function(req, res) {
 						   });
 						   var result = "Request has been captured in the sheet successfully.";
 						 }else{
-						 
-							var result = "Today spread sheet has to be added";
-						 
-						 }  
+							var result = "We have added the spread sheet please add the utterance again";
+						 }
+
+						return res.json({
+							speech: result,
+							source: 'webhook-echo-one',
+						});
 				   });
 				});
 						
-                return res.json({
-                    speech: result,
-                    source: 'webhook-echo-one',
-				});
+                
 		break;
     }
 });
