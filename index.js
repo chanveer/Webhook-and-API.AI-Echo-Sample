@@ -17,45 +17,32 @@ restService.post('/echo', function(req, res) {
     console.log('=============' + req.body.result.action)
     switch (req.body.result.action) {
 		case "Adddata":
-		    var GoogleSpreadsheet = require('google-spreadsheet');
-		var creds = require('./client_secret.json');
-		// Create a document object using the ID of the spreadsheet - obtained from its URL.
-		var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
+		    
+				var GoogleSpreadsheet = require('google-spreadsheet');
+				var creds = require('./client_secret.json');
+				// Create a document object using the ID of the spreadsheet - obtained from its URL.
+				var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
 
-		// Authenticate with the Google Spreadsheets API.
-		doc.useServiceAccountAuth(creds, function (err) {
+				// Authenticate with the Google Spreadsheets API.
+				doc.useServiceAccountAuth(creds, function (err) {
+					
+					//var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
+					//var quantity = req.body.result.parameters.number+":";
+					var sheet;
+					var dateFormat = require('dateformat');
+					var date = dateFormat(new Date(), "yyyy-mm-dd"); 
+					
+					doc.getInfo(function(err, info) {
+						
+						doc.addWorksheet({
+						  title: 'Inventory-'+date
+						}, function(err, sheet) {
+							sheet.setHeaderRow(['productname', 'quantity']); //async
+						});
+								
+					});	
 			
-			
-			var GoogleSpreadsheet = require('google-spreadsheet');
-			var creds = require('./client_secret.json');
-			// Create a document object using the ID of the spreadsheet - obtained from its URL.
-			var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
-
-			// Authenticate with the Google Spreadsheets API.
-			doc.useServiceAccountAuth(creds, function (err) {
-
-				//var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
-				//var quantity = req.body.result.parameters.number+":";
-				var sheet;
-				var dateFormat = require('dateformat');
-				var date = dateFormat(new Date(), "yyyy-mm-dd"); 
-
-				doc.getInfo(function(err, info) {
-
-					doc.addWorksheet({
-					  title: 'Inventory-'+date
-					}, function(err, sheet) {
-						sheet.setHeaderRow(['productname', 'quantity']); //async
-					});
-
-				});	
-
-
-			});		
-		    var result = "Request has been captured in the sheet successfully.";		
-                    return res.json({
-                    speech: result,
-                    source: 'webhook-echo-one',
+				
 				});
 			
 		break;
