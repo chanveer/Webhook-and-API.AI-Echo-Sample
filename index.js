@@ -134,12 +134,12 @@ restService.post('/insert', function(req, res) {
 						 if(info.worksheets[cnt-1].title == 'Inventory-'+date){
 						 
 							var productname = req.body.result.parameters.getproduct;
-							var newvalue = req.body.result.parameters.getvalue
+							var newvalue = req.body.result.parameters.getvalue;
 							
 								doc.getRows(cnt, function (err, rows) {
 								for(var property1 in rows) {
 									if(rows[property1].productname == productname){
-										var updatevalue = rows[property1].quantity + newvalue;
+										var updatevalue = typeof parseInt(rows[property1].quantity) + typeof parseInt(newvalue);
 										
 										
 										rows[property1].quantity = updatevalue;
