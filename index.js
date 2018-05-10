@@ -139,7 +139,7 @@ restService.post('/insert', function(req, res) {
 								doc.getRows(cnt, function (err, rows) {
 								for(var property1 in rows) {
 									if(rows[property1].productname == productname){
-										var updatevalue = typeof parseInt(rows[property1].quantity) + typeof parseInt(newvalue);
+										var updatevalue = parseInt(rows[property1].quantity) + parseInt(newvalue);
 										
 										
 										rows[property1].quantity = updatevalue;
