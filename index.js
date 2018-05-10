@@ -112,6 +112,56 @@ restService.post('/insert', function(req, res) {
 			
 		break;
 		
+		case updateproductQuanity:
+		
+				var GoogleSpreadsheet = require('google-spreadsheet');
+			    var creds = require('./client_secret.json');
+				// Create a document object using the ID of the spreadsheet - obtained from its URL.
+				var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
+				var result = "";
+				var sheet;
+				var dateFormat = require('dateformat');
+				var date = dateFormat(new Date(), "yyyy-mm-dd"); 
+				
+				
+				// Authenticate with the Google Spreadsheets API.
+				doc.useServiceAccountAuth(creds, function (err) {
+					doc.getInfo(function(err, info) {
+						 var cnt = 0;
+						 for(var property1 in info.worksheets) {
+							cnt++;
+						 }
+						 if(info.worksheets[cnt-1].title == 'Inventory-'+date){
+						 
+							var productname = req.body.result.parameters.getproduct;
+							var newvalue = req.body.result.parameters.getvalue
+							
+								doc.getRows(cnt, function (err, rows) {
+								for(var property1 in rows) {
+									if(rows[property1].productname == productname){
+										var updatevalue = rows[property1].quantity + newvalue;
+										
+										
+										rows[property1].quantity = updatevalue;
+										rows[property1].save(); // this is async
+										break;
+									}
+								}
+								var result = "Yeah it's updated. You can add somemore items.";	
+								
+								return res.json({
+									speech: result,
+									source: 'webhook-echo-one',
+								});
+								
+						   });
+						   
+						 } 
+
+						
+				   });
+				});
+		
 		case "addquantity":
 		
 				var GoogleSpreadsheet = require('google-spreadsheet');
