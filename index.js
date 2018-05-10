@@ -29,76 +29,33 @@ restService.post('/insert', function(req, res) {
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
 					doc.getInfo(function(err, info) {
-					
 						 var cnt = 0;
 						 for(var property1 in info.worksheets) {
 							cnt++;
 						 }
 						 if(info.worksheets[cnt-1].title == 'Inventory-'+date){
-						 
-						 
-						 
 							var productname = req.body.result.parameters.any;
 							var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
-							var flag = "";
 							
-
-							
-							
-							doc.getRows(cnt, function (err, rows) {
-								for(var property1 in rows) {
-									if(rows[property1].productname == productname){
-										rows[property1].productname = productname;
-										rows[property1].save(); // this is async
-										flag = 1;
-										break;
-									}else{
-										flag = 0;
-									}
-								}
-								if(flag == 0){
-									doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
-										  if(err) {
-											console.log(err);
-										  }
-										var result = "Yeah it's added. You can add somemore items.";
-									});
-								}else{
-									var result = "Do you want to add more quantity to the same product";
-								}
-								
-								return res.json({
-									speech: result,
-									source: 'webhook-echo-one',
-								});
-								
-						   });
-							
-							
-							
-							
-						 }
-						 
-						 
-						 
-						 else{
+				 			doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
+								  if(err) {
+									console.log(err);
+								  }
+							});
+						   var result = "Yeah it's added. You can add somemore items.";
+						 }else{
 						   doc.addWorksheet({
 							  title: 'Inventory-'+date
 							  }, function(err, sheet) {
 										sheet.setHeaderRow(['productname', 'quantity']); //async
 							  });
 						   var result = "We have added the spread sheet please add the utterance again";
-						   
-							return res.json({
-								speech: result,
-								source: 'webhook-echo-one',
-							});
 						 } 
-						 
-						 
 
-						
-						
+						return res.json({
+							speech: result,
+							source: 'webhook-echo-one',
+						});
 				   });
 				});
 						
