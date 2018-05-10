@@ -112,7 +112,7 @@ restService.post('/insert', function(req, res) {
 			
 		break;
 		
-		case updateproductQuanity:
+		case "updateproductQuanity":
 		
 				var GoogleSpreadsheet = require('google-spreadsheet');
 			    var creds = require('./client_secret.json');
