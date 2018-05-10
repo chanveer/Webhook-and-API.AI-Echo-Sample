@@ -161,6 +161,8 @@ restService.post('/insert', function(req, res) {
 						
 				   });
 				});
+				
+		break;
 		
 		case "addquantity":
 		
