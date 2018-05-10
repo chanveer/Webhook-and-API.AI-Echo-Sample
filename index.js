@@ -99,12 +99,12 @@ restService.post('/insert', function(req, res) {
 							  title: 'Inventory-'+date
 							  }, function(err, sheet) {
 										sheet.setHeaderRow(['productname', 'quantity']); //async
-										sheet.addRow({PRODUCTNAME: productname,QUANTITY: quantity});
-										//rows[cnt].productname = productname;
-										//rows[cnt].quantity = quantity;
-										//rows[cnt].save(); // this is async
+										//sheet.addRow({PRODUCTNAME: productname,QUANTITY: quantity});
+										
 							  });
-							
+							rows[0].productname = productname;
+							rows[0].quantity = quantity;
+						   rows[0].save(); // this is async
 							var result = "We have added the spread sheet and given phrase";
 						   
 						   
