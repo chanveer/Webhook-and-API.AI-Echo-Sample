@@ -44,7 +44,7 @@ restService.post('/insert', function(req, res) {
 							  }
 							
 						   });
-						   var result = "It is added. You can add somemore items.";
+						   var result = "Yeah it's added. You can add somemore items.";
 						 }else{
 						   doc.addWorksheet({
 							  title: 'Inventory-'+date
@@ -94,7 +94,7 @@ restService.post('/insert', function(req, res) {
 							  }
 							
 						   });
-						    var result = "It is added. You can add somemore items.";
+						    var result = "Yeah it's added. You can add somemore items.";
 						 }else{
 						   doc.addWorksheet({
 							  title: 'Inventory-'+date
@@ -143,7 +143,7 @@ restService.post('/insert', function(req, res) {
 							  }
 							
 						   });
-						    var result = "It is added. You can add somemore items.";
+						    var result = "Yeah it's added. You can add somemore items.";
 						 }else{
 						      doc.addWorksheet({
 							  title: 'Inventory-'+date
