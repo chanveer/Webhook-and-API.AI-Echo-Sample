@@ -47,7 +47,7 @@ restService.post('/insert', function(req, res) {
 							
 							doc.getRows(cnt, function (err, rows) {
 								for(var property1 in rows) {
-									if(rows[property1].productname == producttyped){
+									if(rows[property1].productname == productname){
 										rows[property1].productname = productname;
 										rows[property1].save(); // this is async
 										flag = 1;
