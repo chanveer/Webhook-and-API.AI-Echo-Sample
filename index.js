@@ -66,6 +66,11 @@ restService.post('/insert', function(req, res) {
 									}
 								}
 								if(flag == 0){
+									doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
+										  if(err) {
+											console.log(err);
+										  }
+									});
 									var result = "Yeah it's added. You can add somemore items.";
 								}else{
 									var result = "Do you want to add more quantity to the same product";
