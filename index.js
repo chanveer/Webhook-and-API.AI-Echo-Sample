@@ -66,6 +66,12 @@ restService.post('/insert', function(req, res) {
 								}else{
 									var result = "Do you want to add more quantity to the same product";
 								}
+								
+								return res.json({
+									speech: result,
+									source: 'webhook-echo-one',
+								});
+								
 						   });
 							
 							
@@ -82,14 +88,16 @@ restService.post('/insert', function(req, res) {
 										sheet.setHeaderRow(['productname', 'quantity']); //async
 							  });
 						   var result = "We have added the spread sheet please add the utterance again";
+						   
+							return res.json({
+								speech: result,
+								source: 'webhook-echo-one',
+							});
 						 } 
 						 
 						 
 
-						return res.json({
-							speech: result,
-							source: 'webhook-echo-one',
-						});
+						
 						
 				   });
 				});
