@@ -36,7 +36,7 @@ restService.post('/insert', function(req, res) {
 						 if(info.worksheets[cnt-1].title == 'Inventory-'+date){
 							var productname = req.body.result.parameters.any;
 							var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
-							var flag = 0;
+							var flag = "";
 				 			doc.getRows(cnt, function (err, rows) {
 								for(var property1 in rows) {
 									if(rows[property1].productname == productname){
@@ -48,7 +48,7 @@ restService.post('/insert', function(req, res) {
 								}
 							});
 							 
-							 if(flag == 0){
+							 if(flag == 1){
 								 doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
 								  if(err) {
 									console.log(err);
