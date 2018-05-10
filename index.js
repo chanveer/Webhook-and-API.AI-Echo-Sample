@@ -36,12 +36,24 @@ restService.post('/insert', function(req, res) {
 						 if(info.worksheets[cnt-1].title == 'Inventory-'+date){
 							var productname = req.body.result.parameters.any;
 							var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
-					
-				 
-							doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
-							  if(err) {
-								console.log(err);
-							  }
+							var flag = 0;
+				 			doc.getRows(cnt, function (err, rows) {
+							for(var property1 in rows) {
+								if(rows[property1].productname == productname){
+									
+									rows[property1].productname = "Updated";
+									rows[property1].save(); // this is async
+									flag = 1;
+								}
+							}
+							});
+							 
+							 if(flag == 0){
+								 doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
+								  if(err) {
+									console.log(err);
+								  }
+							}
 							
 						   });
 						   var result = "Yeah it's added. You can add somemore items.";
