@@ -102,9 +102,13 @@ restService.post('/insert', function(req, res) {
 										//sheet.addRow({PRODUCTNAME: productname,QUANTITY: quantity});
 										
 							  });
-							rows[0].productname = productname;
-							rows[0].quantity = quantity;
-						   rows[0].save(); // this is async
+							  
+							doc.getRows(1, function (err, rows) {  
+								rows[1].productname = productname;
+								rows[1].quantity = quantity;
+								rows[1].save(); // this is async
+							
+							});
 							var result = "We have added the spread sheet and given phrase";
 						   
 						   
