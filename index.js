@@ -36,13 +36,28 @@ restService.post('/insert', function(req, res) {
 						 if(info.worksheets[cnt-1].title == 'Inventory-'+date){
 							var productname = req.body.result.parameters.any;
 							var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
-							
-				 			doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
+							var flag = 0;
+				 			doc.getRows(cnt, function (err, rows) {
+								for(var property1 in rows) {
+									if(rows[property1].productname == productname){
+										
+										rows[property1].productname = "Updated";
+										rows[property1].save(); // this is async
+										flag = 1;
+									}
+								}
+							});
+							 
+							 if(flag == 0){
+								 doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
 								  if(err) {
 									console.log(err);
 								  }
-							});
-						   var result = "Yeah it's added. You can add somemore items.";
+								});
+								var result = "Yeah it's added. You can add somemore items.";
+						    }else{
+								var result = "Yeah it's updated. You can add somemore items.";
+							}
 						 }else{
 						   doc.addWorksheet({
 							  title: 'Inventory-'+date
@@ -130,41 +145,26 @@ restService.post('/insert', function(req, res) {
 						 for(var property1 in info.worksheets) {
 							cnt++;
 						 }
-						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
+						 if(info.worksheets[cnt-1].title == 'Inventory-'+date){
 							var productname = req.body.result.contexts[0].parameters.any;
 							var quantity = req.body.result.contexts[0].parameters.number+" "+req.body.result.contexts[0].parameters['unit-weight-name'];
-							var flag = 0;
+					
+				 
+							doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
+							  if(err) {
+								console.log(err);
+							  }
 							
-							
-								doc.getRows(cnt, function (err, rows) {
-									for(var property1 in rows) {
-										if(rows[property1].productname == productname){
-											
-											rows[property1].productname = "Updated";
-											rows[property1].save(); // this is async
-											flag = 1;
-										}
-									}
-								});
-							
-								if(flag = 0){
-									doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
-									  if(err) {
-										console.log(err);
-									  }
-									});
-									var result = "Yeah it's added. You can add somemore items.";
-								}else{
-									var result = "Yeah it's updated.";
-								}
-						}else{
+						   });
+						    var result = "Yeah it's added. You can add somemore items.";
+						 }else{
 						      doc.addWorksheet({
 							  title: 'Inventory-'+date
 							  }, function(err, sheet) {
 										sheet.setHeaderRow(['productname', 'quantity']); //async
 							  });
 							var result = "We have added the spread sheet please add the utterance again";
-						}
+						 }
 
 						return res.json({
 							speech: result,
