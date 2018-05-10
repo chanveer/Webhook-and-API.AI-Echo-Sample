@@ -231,10 +231,12 @@ restService.post('/insert', function(req, res) {
 						 for(var property1 in info.worksheets) {
 							cnt++;
 						 }
-						 if(info.worksheets[cnt-1].title == 'Inventory-'+date){
-							var productname = req.body.result.contexts[0].parameters.any;
-							var quantity = req.body.result.contexts[0].parameters.number+" "+req.body.result.contexts[0].parameters['unit-weight-name'];
+						 var productname = req.body.result.contexts[0].parameters.any;
+						 var quantity = req.body.result.contexts[0].parameters.number+" "+req.body.result.contexts[0].parameters['unit-weight-name'];
 					
+						 
+						 if(info.worksheets[cnt-1].title == 'Inventory-'+date){
+							
 				 
 							doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
 							  if(err) {
@@ -249,7 +251,14 @@ restService.post('/insert', function(req, res) {
 							  }, function(err, sheet) {
 										sheet.setHeaderRow(['productname', 'quantity']); //async
 							  });
-							var result = "We have added the spread sheet please add the utterance again";
+							  
+							  doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
+								  if(err) {
+									console.log(err);
+								  }
+							
+							  });
+							var result = "We have added the spread sheet and given phrase";
 						 }
 
 						return res.json({
