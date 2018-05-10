@@ -13,7 +13,7 @@ restService.use(
 
 restService.use(bodyParser.json());
 
-restService.post('/echo', function(req, res) {
+restService.post('/insert', function(req, res) {
     console.log('=============' + req.body.result.action)
     switch (req.body.result.action) {
 		case "Adddata":
@@ -44,7 +44,7 @@ restService.post('/echo', function(req, res) {
 							  }
 							
 						   });
-						   var result = "It is added";
+						   var result = "It is added. You can add somemore items.";
 						 }else{
 						   doc.addWorksheet({
 							  title: 'Inventory-'+date
@@ -94,7 +94,7 @@ restService.post('/echo', function(req, res) {
 							  }
 							
 						   });
-						    var result = "It is added";
+						    var result = "It is added. You can add somemore items.";
 						 }else{
 						   doc.addWorksheet({
 							  title: 'Inventory-'+date
@@ -143,7 +143,7 @@ restService.post('/echo', function(req, res) {
 							  }
 							
 						   });
-						    var result = "It is added";
+						    var result = "It is added. You can add somemore items.";
 						 }else{
 						      doc.addWorksheet({
 							  title: 'Inventory-'+date
