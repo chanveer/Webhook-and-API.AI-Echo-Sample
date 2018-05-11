@@ -65,10 +65,8 @@ restService.post('/insert', function(req, res) {
 						}else{
 							doc.addWorksheet({
 							  title: 'Inventory-'+date
-							  }, function(err, sheet) {
+							}, function(err, sheet) {
 										sheet.setHeaderRow(['productname', 'quantity']); //async
-										//sheet.addRow({PRODUCTNAME: productname,QUANTITY: quantity});
-										
 							});
 							var result = "We have added the spread sheet and given phrase";
 						    return res.json({
@@ -119,33 +117,52 @@ restService.post('/insert', function(req, res) {
 						for(var property1 in info.worksheets) {
 							cnt++;
 						}
+						var productname = req.body.result.contexts[0].parameters.product;
+						var quantity = req.body.result.contexts[0].parameters.number+" "+req.body.result.contexts[0].parameters['unit-weight-name'];
+							
 						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
-							var productname = req.body.result.contexts[0].parameters.product;
-							var quantity = req.body.result.contexts[0].parameters.number+" "+req.body.result.contexts[0].parameters['unit-weight-name'];
-							doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
-							  if(err) {
-								console.log(err);
-							  }
-							});
-						    var result = "Yeah it's added. You can add somemore items.";
+							var flag = "";
+							
+							doc.getRows(cnt, function (err, rows) {
+								for(var property1 in rows) {
+									if(rows[property1].productname == productname){
+										flag = 1;
+										break;
+									}else{
+										flag = 0;
+									}
+								}
+								if(flag == 0){
+									doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
+										  if(err) {
+											console.log(err);
+										  }
+									});
+									var result = "Yeah it's added. You can add somemore items.";
+								}else{
+									var result = "Do you want to add more quantity to the same product";
+								}
+								return res.json({
+									speech: result,
+									source: 'webhook-echo-one',
+								});
+						    });
 						}else{
-						   doc.addWorksheet({
+							doc.addWorksheet({
 							  title: 'Inventory-'+date
-						   }, function(err, sheet) {
-									sheet.setHeaderRow(['productname', 'quantity']); //async
-						   });
-						   var result = "We have added the spread sheet please add the utterance again";
+							}, function(err, sheet) {
+										sheet.setHeaderRow(['productname', 'quantity']); //async
+							});
+							var result = "We have added the spread sheet please add the utterance again";
+						    return res.json({
+								speech: result,
+								source: 'webhook-echo-one',
+							});
 						}
-						return res.json({
-							speech: result,
-							source: 'webhook-echo-one',
-						});
-				    });
+					});
 				});
 		break;
-		
 		case "addproduct":
-		
 				// Authenticate with the Google Spreadsheets API.
 				doc.useServiceAccountAuth(creds, function (err) {
 					doc.getInfo(function(err, info) {
@@ -153,27 +170,52 @@ restService.post('/insert', function(req, res) {
 						for(var property1 in info.worksheets) {
 						  cnt++;
 						}
+						var productname = req.body.result.contexts[0].parameters.any;
+						var quantity = req.body.result.contexts[0].parameters.number+" "+req.body.result.contexts[0].parameters['unit-weight-name'];
+						
 						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
-							var productname = req.body.result.contexts[0].parameters.any;
-							var quantity = req.body.result.contexts[0].parameters.number+" "+req.body.result.contexts[0].parameters['unit-weight-name'];
-							doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
-							  if(err) {
-								console.log(err);
-							  }
-							});
-						    var result = "Yeah it's added. You can add somemore items.";
-						}else{
+							var flag = "";
+							
+							doc.getRows(cnt, function (err, rows) {
+								for(var property1 in rows) {
+									if(rows[property1].productname == productname){
+										flag = 1;
+										break;
+									}else{
+										flag = 0;
+									}
+								}
+								if(flag == 0){
+									doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
+										  if(err) {
+											console.log(err);
+										  }
+									});
+									var result = "Yeah it's added. You can add somemore items.";
+								}else{
+									var result = "Do you want to add more quantity to the same product";
+								}
+								return res.json({
+									speech: result,
+									source: 'webhook-echo-one',
+								});
+						    });
+						}
+						
+						
+						else{
 						      doc.addWorksheet({
 							  title: 'Inventory-'+date
 							  }, function(err, sheet) {
 										sheet.setHeaderRow(['productname', 'quantity']); //async
 							  });
 							var result = "We have added the spread sheet please add the utterance again";
+							return res.json({
+								speech: result,
+								source: 'webhook-echo-one',
+							});
 						}
-						return res.json({
-							speech: result,
-							source: 'webhook-echo-one',
-						});
+						
 				   });
 				});
 		break;
