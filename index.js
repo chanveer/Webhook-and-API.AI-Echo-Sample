@@ -89,10 +89,11 @@ restService.post('/insert', function(req, res) {
 						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
 							var productname = req.body.result.parameters.getproduct;
 							var newvalue = req.body.result.parameters.getvalue;
+							var unit = req.body.result.parameters.unit;
 							doc.getRows(cnt, function (err, rows){
 								for(var property1 in rows) {
 									if(rows[property1].productname == productname){
-										var updatevalue = parseInt(rows[property1].quantity) + parseInt(newvalue);
+										var updatevalue = parseInt(rows[property1].quantity) + parseInt(newvalue)+" "+unit;
 										rows[property1].quantity = updatevalue;
 										rows[property1].save(); // this is async
 										break;
