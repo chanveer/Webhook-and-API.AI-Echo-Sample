@@ -19,7 +19,7 @@ restService.post('/insert', function(req, res) {
     var GoogleSpreadsheet = require('google-spreadsheet');
 	var creds = require('./client_secret.json');
 	// Create a document object using the ID of the spreadsheet - obtained from its URL.
-	var doc = new GoogleSpreadsheet('19z_cDmfUprmx-xKEynMeMvu0SQNua_dEUMB2SHwDn6w');
+	var doc = new GoogleSpreadsheet('1-CxYAf1pR2ZYf9J2-cDVEW3AawnUx-82JuVYVCtqVbY');
 	var result = "";
 	var sheet;
 	var dateFormat = require('dateformat');
@@ -53,7 +53,7 @@ restService.post('/insert', function(req, res) {
 											console.log(err);
 										  }
 									});
-									var result = "Yeah it's added. You can add somemore items.";
+									var result = "Yeah it's added. You can add some more items.";
 								}else{
 									var result = "Product has been already added in the list.Do you want to update the quantity?";
 								}
@@ -99,7 +99,7 @@ restService.post('/insert', function(req, res) {
 										break;
 									}
 								}
-								var result = "Yeah it's updated. You can add somemore items.";	
+								var result = "Yeah it's updated. You can add some more items.";	
 								return res.json({
 									speech: result,
 									source: 'webhook-echo-one',
@@ -139,7 +139,7 @@ restService.post('/insert', function(req, res) {
 											console.log(err);
 										  }
 									});
-									var result = "Yeah it's added. You can add somemore items.";
+									var result = "Yeah it's added. You can add some more items.";
 								}else{
 									var result = "Product has been already added in the list.Do you want to update the quantity?";
 								}
@@ -173,14 +173,6 @@ restService.post('/insert', function(req, res) {
 						}
 						var productname = req.body.result.contexts[0].parameters.any;
 						var quantity = req.body.result.contexts[0].parameters.quantaty;
-						var unit = req.body.result.contexts[0].parameters['unit-weight-name'];
-						
-						if(unit!= ''){
-						
-							var value = quantity + unit;
-						}else{
-							var value = quantity;
-						}
 						
 						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
 							var flag = "";
@@ -200,7 +192,7 @@ restService.post('/insert', function(req, res) {
 											console.log(err);
 										  }
 									});
-									var result = "Yeah it's added. You can add somemore items.";
+									var result = "Yeah it's added. You can add some more items.";
 								}else{
 									var result = "Product has been already added in the list.Do you want to update the quantity?";
 								}
