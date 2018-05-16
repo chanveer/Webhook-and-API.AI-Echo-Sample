@@ -195,7 +195,7 @@ restService.post('/insert', function(req, res) {
 									}
 								}
 								if(flag == 0){
-									doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: value}, function(err) {
+									doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
 										  if(err) {
 											console.log(err);
 										  }
