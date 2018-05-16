@@ -172,7 +172,15 @@ restService.post('/insert', function(req, res) {
 						  cnt++;
 						}
 						var productname = req.body.result.contexts[0].parameters.any;
-						var quantity = req.body.result.contexts[0].parameters.quantaty+" "+req.body.result.contexts[0].parameters['unit-weight-name'];
+						var quantity = req.body.result.contexts[0].parameters.quantaty;
+						var unit = req.body.result.contexts[0].parameters['unit-weight-name'];
+						
+						if(unit!= ''){
+						
+							var value = quantity + unit;
+						}else{
+							var value = quantity;
+						}
 						
 						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
 							var flag = "";
@@ -187,7 +195,7 @@ restService.post('/insert', function(req, res) {
 									}
 								}
 								if(flag == 0){
-									doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: quantity}, function(err) {
+									doc.addRow(cnt, { PRODUCTNAME: productname,QUANTITY: value}, function(err) {
 										  if(err) {
 											console.log(err);
 										  }
