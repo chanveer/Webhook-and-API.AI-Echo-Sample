@@ -23,7 +23,8 @@ restService.post('/insert', function(req, res) {
 	var result = "";
 	var sheet;
 	var dateFormat = require('dateformat');
-	var date = dateFormat(new Date(), "yyyy-mm-dd");  
+	//var date = dateFormat(new Date(), "yyyy-mm-dd"); 
+	var date = dateFormat(new Date(), "mmmm d, yyyy");	
 	
     switch (req.body.result.action) {
 		case "Adddata":
@@ -36,7 +37,7 @@ restService.post('/insert', function(req, res) {
 						}
 						var productname = req.body.result.parameters.any;
 						var quantity = req.body.result.parameters.number+" "+req.body.result.parameters['unit-weight-name'];
-						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
+						if(info.worksheets[cnt-1].title == date){
 						var flag = "";
 						doc.getRows(cnt, function (err, rows) {
 								for(var property1 in rows) {
@@ -53,7 +54,7 @@ restService.post('/insert', function(req, res) {
 											console.log(err);
 										  }
 									});
-									var result = "Yeah it's added. You can add some more items.";
+									var result = "It's added. You can add some more items.";
 								}else{
 									var result = "This product has been already added in the list.Do you want to update the quantity?";
 								}
@@ -64,7 +65,7 @@ restService.post('/insert', function(req, res) {
 						});
 						}else{
 							doc.addWorksheet({
-							  title: 'Inventory-'+date
+							  title: date
 							}, function(err, sheet) {
 										sheet.setHeaderRow(['productname', 'quantity']); //async
 							});
@@ -86,7 +87,7 @@ restService.post('/insert', function(req, res) {
 						for(var property1 in info.worksheets) {
 						   cnt++;
 						}
-						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
+						if(info.worksheets[cnt-1].title == date){
 							var productname = req.body.result.parameters.getproduct;
 							var newvalue = req.body.result.parameters.getvalue;
 							var unit = req.body.result.parameters.unit;
@@ -99,7 +100,7 @@ restService.post('/insert', function(req, res) {
 										break;
 									}
 								}
-								var result = "Yeah it's updated. You can add some more items.";	
+								var result = "It's updated. You can add some more items.";	
 								return res.json({
 									speech: result,
 									source: 'webhook-echo-one',
@@ -121,7 +122,7 @@ restService.post('/insert', function(req, res) {
 						var productname = req.body.result.contexts[0].parameters.product;
 						var quantity = req.body.result.contexts[0].parameters.number+" "+req.body.result.contexts[0].parameters['unit-weight-name'];
 							
-						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
+						if(info.worksheets[cnt-1].title == date){
 							var flag = "";
 							
 							doc.getRows(cnt, function (err, rows) {
@@ -139,7 +140,7 @@ restService.post('/insert', function(req, res) {
 											console.log(err);
 										  }
 									});
-									var result = "Yeah it's added. You can add some more items.";
+									var result = "It's added. You can add some more items.";
 								}else{
 									var result = "This product has been already added in the list.Do you want to update the quantity?";
 								}
@@ -150,7 +151,7 @@ restService.post('/insert', function(req, res) {
 						    });
 						}else{
 							doc.addWorksheet({
-							  title: 'Inventory-'+date
+							  title: date
 							}, function(err, sheet) {
 										sheet.setHeaderRow(['productname', 'quantity']); //async
 							});
@@ -174,7 +175,7 @@ restService.post('/insert', function(req, res) {
 						var productname = req.body.result.contexts[0].parameters.any;
 						var quantity = req.body.result.contexts[0].parameters.quantaty;
 						
-						if(info.worksheets[cnt-1].title == 'Inventory-'+date){
+						if(info.worksheets[cnt-1].title == date){
 							var flag = "";
 							
 							doc.getRows(cnt, function (err, rows) {
@@ -192,7 +193,7 @@ restService.post('/insert', function(req, res) {
 											console.log(err);
 										  }
 									});
-									var result = "Yeah it's added. You can add some more items.";
+									var result = "It's added. You can add some more items.";
 								}else{
 									var result = "This product has been already added in the list.Do you want to update the quantity?";
 								}
@@ -206,7 +207,7 @@ restService.post('/insert', function(req, res) {
 						
 						else{
 						      doc.addWorksheet({
-							  title: 'Inventory-'+date
+							  title: date
 							  }, function(err, sheet) {
 										sheet.setHeaderRow(['productname', 'quantity']); //async
 							  });
