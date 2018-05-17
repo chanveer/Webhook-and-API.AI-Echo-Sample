@@ -55,7 +55,7 @@ restService.post('/insert', function(req, res) {
 									});
 									var result = "Yeah it's added. You can add some more items.";
 								}else{
-									var result = "Product has been already added in the list.Do you want to update the quantity?";
+									var result = "This product has been already added in the list.Do you want to update the quantity?";
 								}
 								return res.json({
 									speech: result,
@@ -141,7 +141,7 @@ restService.post('/insert', function(req, res) {
 									});
 									var result = "Yeah it's added. You can add some more items.";
 								}else{
-									var result = "Product has been already added in the list.Do you want to update the quantity?";
+									var result = "This product has been already added in the list.Do you want to update the quantity?";
 								}
 								return res.json({
 									speech: result,
@@ -194,7 +194,7 @@ restService.post('/insert', function(req, res) {
 									});
 									var result = "Yeah it's added. You can add some more items.";
 								}else{
-									var result = "Product has been already added in the list.Do you want to update the quantity?";
+									var result = "This product has been already added in the list.Do you want to update the quantity?";
 								}
 								return res.json({
 									speech: result,
